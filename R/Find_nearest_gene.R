@@ -7,7 +7,7 @@
 Find_nearest_gene<-function(data,flanking = 0, build = "hg19",filename="匹配基因文件"){
   library(dplyr)
   data1<-data[,c("SNP","chr.exposure","pos.exposure")]#染色体 位置 SNP
-  find_nearest_gene <-function(data, flanking=100, build='hg19', collapse=TRUE, snp='rsid', chr='chromosome', bp='position'){
+  find_nearest_gene1 <-function(data, flanking=100, build='hg19', collapse=TRUE, snp='rsid', chr='chromosome', bp='position'){
 
     data <- data # not sure this is needed
 
@@ -64,13 +64,12 @@ Find_nearest_gene<-function(data,flanking = 0, build = "hg19",filename="匹配�
       })
       data
     }
-  }
-  result<-find_nearest_gene(data1, flanking = flanking, build = build,
+}
+  result<-find_nearest_gene1(data1, flanking = flanking, build = build,
 
                             collapse = TRUE, snp = "SNP", chr = "chr.exposure",
 
                             bp = "pos.exposure")
-
   D<-merge(data,result,by.x="SNP",by.y = "rsid",all = F)
   dir.create(filename)
   path<-paste0(getwd(),"/",filename,"/SNP_gene.csv")
