@@ -76,4 +76,3 @@ Find_nearest_gene<-function(data,flanking = 0, build = "hg19",filename="匹配�
   write.csv(D,path,row.names = F)
 }
 
-
