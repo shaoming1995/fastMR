@@ -325,6 +325,8 @@ stand_UVMR_local_local<-function(keyssh,expgwas,outgwas,confounding_search=T,
     }else{
       if(dim(total1)[[1]]!=0){
         #confonding_name<-c("Whole body fat mass","Arm fat mass left")
+        path0<-paste0(getwd(),"/",outfile,"/PhenoScan")
+        path00<-paste0(path0,"/PhenoScan.csv")
         Atemp<- read.csv(path00,header = T,row.names = 1)  #PhenoScanSNP1(dim(total1)[[1]])
         Atemp0<-Atemp%>%filter(trait %in% confonding_name)
         Atemp0<-Atemp0[!duplicated(Atemp0$snp),]
