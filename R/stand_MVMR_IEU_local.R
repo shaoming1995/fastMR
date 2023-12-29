@@ -23,8 +23,15 @@ stand_MVMR_IEU_local<-function(keyssh,exp_GWASID_list=NULL,outgwas,clump_r2 = 0.
     #获取结局数据
     outcome_dat <- merge(exposure_dat,outgwas,by="SNP",all=F)
     #多变量MR分析
+    #多变量MR分析
     outcome_dat<-outcome_dat[!duplicated(outcome_dat$SNP),]
-    mvdat <- mv_harmonise_data(exposure_dat, outcome_dat)
+    outcome_dat_tmp <- outcome_dat[,c("SNP","beta.outcome")]
+    exposure_dat_tmp <- merge(exposure_dat,outcome_dat_tmp,by="SNP",all=F)
+    outcome_dat_tmp2 <- outcome_dat[,c("SNP","effect_allele.outcome","other_allele.outcome", "eaf.outcome",
+                                       "beta.outcome","se.outcome","pval.outcome","id.outcome","outcome")]
+    exposure_dat_tmp2<-exposure_dat_tmp[,c("SNP","effect_allele.exposure","other_allele.exposure", "eaf.exposure",
+                                           "beta.exposure","se.exposure", "pval.exposure","id.exposure","exposure")]
+    mvdat <- mv_harmonise_data(exposure_dat_tmp2, outcome_dat_tmp2)
     #转换数据格式讲S3变成S4数据格式
     library(MendelianRandomization)
     MRMVInput <- mr_mvinput(bx = mvdat$exposure_beta,
