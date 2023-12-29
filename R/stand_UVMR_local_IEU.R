@@ -209,11 +209,8 @@ stand_UVMR_local_IEU<-function(keyssh,expgwas,GWASID,samplesize_outcome=100000,n
                   "exposure",
                   "samplesize.exposure"
   )]
-  OUT<-extract_outcome_data(snps=EXP$SNP,outcomes=GWASID,proxies=T,maf_threshold = 0.01,access_token = NULL)
-  OUT$id.outcome=name_outcome
-  OUT$outcome=name_outcome
-  OUT$samplesize.outcome=samplesize_outcome
-  if(dim(OUT)[[1]]!=0){
+
+
   expiv<-subset(EXP,pval.exposure<clump_p1)
   if(local_clump==F){
     expiv<- clump_data(expiv,clump_kb = clump_kb,clump_r2 = clump_r2,clump_p1 = 1,clump_p2 = 1,pop = pop)}else{
@@ -315,20 +312,23 @@ stand_UVMR_local_IEU<-function(keyssh,expgwas,GWASID,samplesize_outcome=100000,n
       }
       expiv<- local_clump_data(expiv,clump_kb = clump_kb,clump_r2 = clump_r2,pop = pop)
     }
+  if(dim(expiv)[[1]]!=0){
+    OUT<-extract_outcome_data(snps=expiv$SNP,outcomes=GWASID,proxies=T,maf_threshold = 0.01,access_token = NULL)
+  if(dim(OUT)[[1]]!=0){
+  OUT$id.outcome=name_outcome
+  OUT$outcome=name_outcome
+  OUT$samplesize.outcome=samplesize_outcome
+  OUT<-subset(OUT,pval.outcome>5e-08)
+  OUT<-OUT[!duplicated(OUT$SNP),]
+
   if(Fvalue==T){
     expiv$R2<-expiv$beta.exposure*expiv$beta.exposure*2*(expiv$eaf.exposure)*(1-expiv$eaf.exposure)
     expiv$Fvalue<-(expiv$samplesize.exposure-2)*expiv$R2/(1-expiv$R2)
     expiv<-subset(expiv,Fvalue>10)}
-  #在结局GWAS summary中寻找与暴露对应的SNPs
-  if(dim(expiv)[[1]]!=0){
-    total1<-merge(OUT,expiv,by.x="SNP",by.y="SNP",all = F)
-    #去除与结局有gwas显著性的SNPs以及可能重复的SNP
-    total1<-subset(total1,pval.outcome>5e-08)
-    total1<-total1[!duplicated(total1$SNP),]
     if(confounding_search==T){
       PhenoScanSNP0(dim(total1)[[1]])
     }else{
-      if(dim(total1)[[1]]!=0){
+      if(dim(OUT)[[1]]!=0){
         #confonding_name<-c("Whole body fat mass","Arm fat mass left")
         path0<-paste0(getwd(),"/",outfile,"/PhenoScan")
         path00<-paste0(path0,"/PhenoScan.csv")
