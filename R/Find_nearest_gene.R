@@ -2,11 +2,14 @@
 #' @param data 输入查找的SNP，包含必要的三列SNP,chr.exposure,pos.exposure
 #' @param flanking 输入SNP距离基因的大小
 #' @param build 输入SNP参考的基因组位置，默认hg19，其他hg18或者hg38
+#' @param snp 输入SNP列名
+#' @param chr 输入染色体列名
+#' @param bp 输入基因组位置
 #' @param filename 输出结果的文件夹名称
 #' @export
-Find_nearest_gene<-function(data,flanking = 0, build = "hg19",filename="匹配基因文件"){
+Find_nearest_gene<-function(data,flanking = 0, snp='rsid',chr='chromosome', bp='position',build = "hg19",filename="匹配基因文件"){
   library(dplyr)
-  data1<-data[,c("SNP","chr.exposure","pos.exposure")]#染色体 位置 SNP
+  data1<-data[,c(snp,chr,bp)]#染色体 位置 SNP
   find_nearest_gene1 <-function(data, flanking=100, build='hg19', collapse=TRUE, snp='rsid', chr='chromosome', bp='position'){
 
     data <- data # not sure this is needed
