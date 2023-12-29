@@ -22,7 +22,7 @@ stand_UVMR_local_IEU<-function(keyssh,expgwas,GWASID,samplesize_outcome=100000,n
                                  local_clump=F,confonding_name=NULL,clump_p1=5e-08,clump_r2=0.001,clump_kb=10000,pop="EUR",outfile="MR结果",presso=F,
                                  steiger=T,Fvalue=T,pt=T){
 
-  if (Sys.info()["nodename"] == keyssh) {
+  if (Sys.info()["nodename"] == keyssh){
   PhenoScanSNP0<-function(N){
     if (!require("phenoscanner", quiet = TRUE))
       devtools::install_github("phenoscanner/phenoscanner")
@@ -209,8 +209,6 @@ stand_UVMR_local_IEU<-function(keyssh,expgwas,GWASID,samplesize_outcome=100000,n
                   "exposure",
                   "samplesize.exposure"
   )]
-
-
   expiv<-subset(EXP,pval.exposure<clump_p1)
   if(local_clump==F){
     expiv<- clump_data(expiv,clump_kb = clump_kb,clump_r2 = clump_r2,clump_p1 = 1,clump_p2 = 1,pop = pop)}else{
@@ -312,23 +310,22 @@ stand_UVMR_local_IEU<-function(keyssh,expgwas,GWASID,samplesize_outcome=100000,n
       }
       expiv<- local_clump_data(expiv,clump_kb = clump_kb,clump_r2 = clump_r2,pop = pop)
     }
-  if(dim(expiv)[[1]]!=0){
-    OUT<-extract_outcome_data(snps=expiv$SNP,outcomes=GWASID,proxies=T,maf_threshold = 0.01,access_token = NULL)
-  if(dim(OUT)[[1]]!=0){
-  OUT$id.outcome=name_outcome
-  OUT$outcome=name_outcome
-  OUT$samplesize.outcome=samplesize_outcome
-  OUT<-subset(OUT,pval.outcome>5e-08)
-  OUT<-OUT[!duplicated(OUT$SNP),]
-
   if(Fvalue==T){
     expiv$R2<-expiv$beta.exposure*expiv$beta.exposure*2*(expiv$eaf.exposure)*(1-expiv$eaf.exposure)
     expiv$Fvalue<-(expiv$samplesize.exposure-2)*expiv$R2/(1-expiv$R2)
     expiv<-subset(expiv,Fvalue>10)}
+  if(dim(expiv)[[1]]!=0){
+    OUT<-extract_outcome_data(snps=expiv$SNP,outcomes=GWASID,proxies=T,maf_threshold = 0.01,access_token = NULL)
+    OUT$id.outcome=name_outcome
+  OUT$outcome=name_outcome
+  OUT$samplesize.outcome=samplesize_outcome
+  OUT<-subset(OUT,pval.outcome>5e-08)
+  OUT<-OUT[!duplicated(OUT$SNP),]
+  total1<-merge(OUT,expiv,by.x="SNP",by.y="SNP",all = F)
     if(confounding_search==T){
       PhenoScanSNP0(dim(total1)[[1]])
     }else{
-      if(dim(OUT)[[1]]!=0){
+      if(dim(total1)[[1]]!=0){
         #confonding_name<-c("Whole body fat mass","Arm fat mass left")
         path0<-paste0(getwd(),"/",outfile,"/PhenoScan")
         path00<-paste0(path0,"/PhenoScan.csv")
@@ -410,10 +407,10 @@ stand_UVMR_local_IEU<-function(keyssh,expgwas,GWASID,samplesize_outcome=100000,n
       }else{cat("当前阈值可能严格，未找到工具变量")}
     }
   }
-  else{cat("当前阈值可能严格，未找到工具变量")}}else{cat("当前阈值可能严格，未在结局中找到工具变量")}
-  warning("此R包由作者邵明个人编制供MR爱好者使用，请关注抖音号793742981（医小研）")
+  else{cat("当前阈值可能严格，未找到工具变量")}
+  warning("此R包由作者邵明编制，请关注抖音号793742981或者顶刊研习社公众号")
   }
   else {
-    warning("keyssh不正确,请联系管理员微信SFM19950928获取密钥")
+    warning("keyssh不正确,请联系管理员微信SFM19950928或DKYXS666获取密钥")
   }
 }

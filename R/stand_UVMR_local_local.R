@@ -406,9 +406,9 @@ stand_UVMR_local_local<-function(keyssh,expgwas,outgwas,confounding_search=T,
     }
   }
   else{cat("当前阈值可能严格，未找到工具变量")}
-  warning("此R包由作者邵明个人编制供MR爱好者使用，请关注抖音号793742981（医小研）")
+  warning("此R包由作者邵明编制，请关注抖音号793742981（医小研）或者顶刊研习社公众号")
   }
   else {
-    warning("keyssh不正确,请联系管理员微信SFM19950928获取密钥")
+    warning("keyssh不正确,请联系管理员微信SFM19950928或DKYXS666获取密钥")
   }
 }
