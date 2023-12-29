@@ -2,14 +2,14 @@
 #' @param data 输入查找的SNP，包含必要的三列SNP,chr.exposure,pos.exposure
 #' @param flanking 输入SNP距离基因的大小
 #' @param build 输入SNP参考的基因组位置，默认hg19，其他hg18或者hg38
-#' @param snp 输入SNP列名
-#' @param chr 输入染色体列名
-#' @param bp 输入基因组位置
+#' @param snp_col 输入SNP列名
+#' @param chr_col 输入染色体列名
+#' @param bp_col 输入基因组位置列名
 #' @param filename 输出结果的文件夹名称
 #' @export
-Find_nearest_gene<-function(data,flanking = 0, snp='rsid',chr='chromosome', bp='position',build = "hg19",filename="匹配基因文件"){
+Find_nearest_gene<-function(data,flanking = 0, snp_col='rsid',chr_col='chromosome', bp_col='position',build = "hg19",filename="匹配基因文件"){
   library(dplyr)
-  data1<-data[,c(snp,chr,bp)]#染色体 位置 SNP
+  data1<-data[,c(snp_col,chr_col,bp_col)]#染色体 位置 SNP
   find_nearest_gene1 <-function(data, flanking=100, build='hg19', collapse=TRUE, snp='rsid', chr='chromosome', bp='position'){
 
     data <- data # not sure this is needed
@@ -68,11 +68,11 @@ Find_nearest_gene<-function(data,flanking = 0, snp='rsid',chr='chromosome', bp='
       data
     }
 }
-  result<-find_nearest_gene1(data1, flanking = flanking, build = build,
+ result<-find_nearest_gene1(data1, flanking = flanking, build = build,
 
-                            collapse = TRUE, snp = "SNP", chr = "chr.exposure",
-
-                            bp = "pos.exposure")
+                            collapse = TRUE, snp = snp_col, chr = chr_col,
+                            
+                            bp = bp_col)
   D<-merge(data,result,by.x="SNP",by.y = "rsid",all = F)
   dir.create(filename)
   path<-paste0(getwd(),"/",filename,"/SNP_gene.csv")
