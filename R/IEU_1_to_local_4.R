@@ -91,8 +91,10 @@ IEU_1_to_local_4<-function(keyssh,data1IV,GWASID,data2IV,data2GWAS,data3IV,data3
 
     #写出工具变量剔除唯一的SNP
     library(tidyr)
-    exposure_dat_temp<-exposure_dat_temp %>% add_count_dt(exposure_dat_temp,.name = "N")
-    exposure_dat_temp<-subset(exposure_dat_temp,N==5)
+    exposure_dat_temp <- exposure_dat_temp %>%
+      group_by(SNP) %>%
+      filter(n() == 5) %>%
+      ungroup()
     return(exposure_dat_temp)
     #write.csv(exposure_dat_temp,"exposure_dat.csv",quote = F,row.names = F)
     #cat("已完成多变量暴露工具变量合并，请前往文件夹下exposure_dat.csv文件中进行人工筛选")
