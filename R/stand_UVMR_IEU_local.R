@@ -22,7 +22,7 @@ stand_UVMR_IEU_local<-function(keyssh,GWASID,outgwas,samplesize_exposure=100000,
                                  local_clump=F,confonding_name=NULL,clump_p1=5e-08,clump_r2=0.001,clump_kb=10000,pop="EUR",outfile="MR结果",presso=F,
                                  steiger=T,Fvalue=T,pt=T){
   if (Sys.info()["nodename"] == keyssh) {
-  PPhenoScanSNP0<-function(N){
+  PhenoScanSNP0<-function(N){
     if (!require("phenoscanner", quiet = TRUE))
       devtools::install_github("phenoscanner/phenoscanner")
     library(phenoscanner)
