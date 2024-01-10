@@ -7,9 +7,9 @@
 Find_nearest_gene(
   data,
   flanking = 0,
-  snp = "rsid",
-  chr = "chromosome",
-  bp = "position",
+  snp_col = "rsid",
+  chr_col = "chromosome",
+  bp_col = "position",
   build = "hg19",
   filename = "匹配基因文件"
 )
@@ -19,11 +19,11 @@ Find_nearest_gene(
 
 \item{flanking}{输入SNP距离基因的大小}
 
-\item{snp}{输入SNP列名}
+\item{snp_col}{输入SNP列名}
 
-\item{chr}{输入染色体列名}
+\item{chr_col}{输入染色体列名}
 
-\item{bp}{输入基因组位置}
+\item{bp_col}{输入基因组位置列名}
 
 \item{build}{输入SNP参考的基因组位置，默认hg19，其他hg18或者hg38}
 

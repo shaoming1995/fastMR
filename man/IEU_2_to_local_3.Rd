@@ -2,7 +2,7 @@
 % Please edit documentation in R/IEU_2_to_local_3.R
 \name{IEU_2_to_local_3}
 \alias{IEU_2_to_local_3}
-\title{多变量孟德尔随机化分析}
+\title{多变量暴露工具变量合并}
 \usage{
 IEU_2_to_local_3(
   keyssh,
@@ -42,5 +42,5 @@ IEU_2_to_local_3(
 \item{data5GWAS}{来自非IEU暴露5的GWAS summary数据文件}
 }
 \description{
-适用于2个来自IEU的暴露，2个来自非IEU的暴露工具变量合并
+适用于2个来自IEU的暴露，3个来自非IEU的暴露工具变量合并
 }

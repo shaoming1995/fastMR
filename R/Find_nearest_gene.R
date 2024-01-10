@@ -68,10 +68,10 @@ Find_nearest_gene<-function(data,flanking = 0, snp_col='rsid',chr_col='chromosom
       data
     }
 }
- result<-find_nearest_gene1(data1, flanking = flanking, build = build,
+  result<-find_nearest_gene1(data1, flanking = flanking, build = build,
 
                             collapse = TRUE, snp = snp_col, chr = chr_col,
-                            
+
                             bp = bp_col)
   D<-merge(data,result,by.x="SNP",by.y = "rsid",all = F)
   dir.create(filename)

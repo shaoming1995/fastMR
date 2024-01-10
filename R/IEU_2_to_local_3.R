@@ -1,5 +1,5 @@
-#' @title 多变量孟德尔随机化分析
-#' @description 适用于2个来自IEU的暴露，2个来自非IEU的暴露工具变量合并
+#' @title 多变量暴露工具变量合并
+#' @description 适用于2个来自IEU的暴露，3个来自非IEU的暴露工具变量合并
 #' @param keyssh 密钥
 #' @param data1IV 来自非IEU暴露1工具变量文件
 #' @param GWASID1 来自IEU暴露1的GWAS ID号
