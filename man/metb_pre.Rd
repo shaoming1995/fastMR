@@ -4,12 +4,12 @@
 \alias{metb_pre}
 \title{代谢数据预处理}
 \usage{
-metb_pre(inputfile, sanefile, exp_or_out = T, P_exp = 1e-05, P_out = 5e-08)
+metb_pre(inputfile, savefile, exp_or_out = T, P_exp = 1e-05, P_out = 5e-08)
 }
 \arguments{
 \item{inputfile}{代谢数据文件位置}
 
-\item{sanefile}{预处理后数据保存位置}
+\item{savefile}{预处理后数据保存位置}
 
 \item{exp_or_out}{处理成暴露还是结局，默认是T表示处理成暴露}
 
