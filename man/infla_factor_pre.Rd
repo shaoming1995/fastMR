@@ -6,7 +6,7 @@
 \usage{
 infla_factor_pre(
   inputfile,
-  sanefile,
+  savefile,
   exp_or_out = T,
   P_exp = 1e-05,
   P_out = 5e-08
@@ -15,7 +15,7 @@ infla_factor_pre(
 \arguments{
 \item{inputfile}{炎症因子数据文件位置}
 
-\item{sanefile}{预处理后数据保存位置}
+\item{savefile}{预处理后数据保存位置}
 
 \item{exp_or_out}{处理成暴露还是结局，默认是T表示处理成暴露}
 
