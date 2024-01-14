@@ -211,6 +211,7 @@ stand_UVMR_IEU_IEU<-function(keyssh,GWASID_exp,GWASID_out,name_exposure="exposur
   OUT$samplesize.outcome=samplesize_outcome
 
   if(dim(OUT)[[1]]!=0){
+    EXP$pval.exposure<-as.numeric(EXP$pval.exposure)
     expiv<-subset(EXP,pval.exposure<clump_p1)
     if(local_clump==F){
       expiv<- clump_data(expiv,clump_kb = clump_kb,clump_r2 = clump_r2,clump_p1 = 1,clump_p2 = 1,pop = pop)}else{
