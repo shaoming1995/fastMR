@@ -2,6 +2,7 @@
 #' @param file 下载的文件名称
 #' @param name 输入表型名称
 #' @param exp_or_out 是否作为暴露数据集，默认是T
+#' @param N 样本量大小
 #' @export
 finn_read_data<-function(file,name,exp_or_out=T,N){
 
