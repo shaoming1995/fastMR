@@ -78,4 +78,6 @@ Find_nearest_gene<-function(data,flanking = 0, snp_col='rsid',chr_col='chromosom
   path<-paste0(getwd(),"/",filename,"/SNP_gene.csv")
   write.csv(D,path,row.names = F)
 }
-
+"hg18genelist"
+"hg19genelist"
+"hg38genelist"
