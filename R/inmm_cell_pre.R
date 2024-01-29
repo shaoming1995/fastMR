@@ -20,6 +20,7 @@ for(i in 1:nrow(file)){
   data<-data[,c("effect_allele.exposure","other_allele.exposure","samplesize.exposure",
                 "beta.exposure","se.exposure" ,"eaf.exposure","pval.exposure","mer","id.exposure","exposure")]
   if(exp_or_out==T){
+    data$pval.exposure<-as.numeric(data$pval.exposure)
     data<-subset(data,pval.exposure<P_exp)
     data1<-merge(ref_data,data,by="mer",all = F)
     pathe<-paste0(savefile,"/",file[i,1],".csv")
