@@ -1,15 +1,15 @@
-Package: fastMR
-Title: What the Package Does (One Line, Title Case)
-Version: 0.24.01.10
-Authors@R: 
-    person("Ming", "Shao", , "shaoming0928@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
-Encoding: UTF-8
-LazyData: true
-Imports:
+封装：fastMR
+标题：该包的用途（一行，标题大写）
+版本：0.24.01.10
+作者@R：
+    person("明", "邵", , "shaoming0928@example.com", role = c("aut", "cre"))
+描述：该包的用途（一段）。
+License: `use_mit_license()`, `use_gpl3_license()` 或者朋友自己选一个
+    执照
+编码：UTF-8
+惰性数据：true
+进口：
   sqldf,
   dplyr
-Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
+Roxygen：列表（降价= TRUE）
+Roxygen注：7.2.3
