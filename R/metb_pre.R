@@ -25,6 +25,7 @@ metb_pre<-function(inputfile,savefile,exp_or_out=T,P_exp=1e-05,P_out=5e-08){
     data$exposure<-data$id.exposure
 
     if(exp_or_out==T){
+      data$pval.exposure<-as.numeric(data$pval.exposure)
       data<-subset(data,pval.exposure<P_exp)
       data[data==""]<-NA
       data<-na.omit(data)
