@@ -199,7 +199,7 @@ stand_UVMR_IEU_IEU<-function(keyssh,GWASID_exp,GWASID_out,name_exposure="exposur
     cat("请前往PhenoScan文件下查看混杂因素查询结果")
   }
   dir.create(outfile)
-  EXP<-extract_instruments(outcomes = GWASID_exp, p1 = clump_p1,clump = T,r2=clump_r2,kb=clump_kb, p2 = 5e-08,access_token = NULL)
+  EXP<-extract_instruments(outcomes = GWASID_exp, p1 = clump_p1,clump = F,r2=clump_r2,kb=clump_kb, p2 = 5e-08,access_token = NULL)
 
   EXP$id.exposure<-name_exposure
   EXP$exposure<-name_exposure
