@@ -19,6 +19,7 @@ infla_factor_pre<-function(inputfile,savefile,exp_or_out=T,P_exp=1e-05,P_out=5e-
     data$id.exposure<-file[i,]
     data$exposure<-data$id.exposure
     if(exp_or_out==T){
+      data$pval.exposure<-as.numeric(data$pval.exposure)
       data<-subset(data,pval.exposure<P_exp)
       pathe<-paste0(savefile,"/",file[i,1],".csv")
       write.csv(data,pathe,row.names = F,quote = F)
