@@ -203,8 +203,8 @@ stand_UVMR_IEU_IEU<-function(keyssh,GWASID_exp,GWASID_out,name_exposure="exposur
 
   EXP$id.exposure<-name_exposure
   EXP$exposure<-name_exposure
-  EXP$samplesize_exposure<-samplesize_exposure
-EXP$samplesize_exposure<-as.numeric(EXP$samplesize_exposure)
+  EXP$samplesize.exposure<-samplesize_exposure
+EXP$samplesize.exposure<-as.numeric(EXP$samplesize.exposure)
   OUT<-extract_outcome_data(snps=EXP$SNP,outcomes=GWASID_out,proxies=T,maf_threshold = 0.01,access_token = NULL)
   OUT$id.outcome=name_outcome
   OUT$outcome=name_outcome
