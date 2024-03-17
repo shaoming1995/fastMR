@@ -145,7 +145,7 @@ Omic_local<-function(keyssh,fac_cell_met=1,savefile="MR结果",omicfile,finish_o
             temp_dat$pval <- NULL
             return(temp_dat)
           }
-          expiv<- local_clump_data(expiv,clump_kb = clump_kb,clump_r2 = clump_r2,pop = pop)
+          expiv<- local_clump_data1(expiv,clump_kb = clump_kb,clump_r2 = clump_r2,pop = pop)
         }
         expiv$R2<-expiv$beta.exposure*expiv$beta.exposure*2*(expiv$eaf.exposure)*(1-expiv$eaf.exposure)
         expiv$Fvalue<-(expiv$samplesize.exposure-2)*expiv$R2/(1-expiv$R2)
