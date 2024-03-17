@@ -200,8 +200,8 @@ stand_UVMR_IEU_local<-function(keyssh,GWASID,outgwas,samplesize_exposure=100000,
   EXP<-extract_instruments(outcomes = GWASID, p1 = clump_p1,clump = F,r2=clump_r2,kb=clump_kb, p2 = 5e-08,access_token = NULL)
   EXP$id.exposure<-name_exposure
   EXP$exposure<-name_exposure
-  EXP$samplesize_exposure<-samplesize_exposure
-EXP$samplesize_exposure<-as.numeric(EXP$samplesize_exposure)
+  EXP$samplesize.exposure<-samplesize_exposure
+EXP$samplesize.exposure<-as.numeric(EXP$samplesize.exposure)
   OUT<-outgwas[,c("SNP","effect_allele.outcome","other_allele.outcome", "eaf.outcome",
                   "beta.outcome","se.outcome","pval.outcome","id.outcome","outcome",
                   "samplesize.outcome")]
