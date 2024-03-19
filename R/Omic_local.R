@@ -66,7 +66,7 @@ Omic_local<-function(keyssh,fac_cell_met=1,savefile="MR结果",omicfile,finish_o
                              clump_r2, " --clump-kb ", clump_kb, " --threads 20 --out ", shQuote(fn,
                                                                                                  type = shell))
               system(fun2)
-              res <- read.table(paste(fn, ".clumps", sep = ""), header = F)
+              res <- read.table(paste(fn, ".clumped", sep = ""), header = F)
               unlink(paste(fn, "*", sep = ""))
               y <- subset(dat, !dat[["rsid"]] %in% res[["V3"]])
               if (nrow(y) > 0) {
