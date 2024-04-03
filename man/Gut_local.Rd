@@ -4,7 +4,17 @@
 \alias{Gut_local}
 \title{肠道菌群MR工具}
 \usage{
-Gut_local(name, key, savefile, PATH, GWASsummay, outname, kb, r2)
+Gut_local(
+  name,
+  key,
+  savefile,
+  PATH,
+  GWASsummay,
+  outname,
+  local_clump = F,
+  kb,
+  r2
+)
 }
 \arguments{
 \item{name}{学号}
@@ -18,6 +28,8 @@ Gut_local(name, key, savefile, PATH, GWASsummay, outname, kb, r2)
 \item{GWASsummay}{本地结局的预处理好的GWAS summay}
 
 \item{outname}{本地结局的名称}
+
+\item{local_clump}{是否启动本地聚类,默认不启动}
 
 \item{kb}{聚类距离}
 
