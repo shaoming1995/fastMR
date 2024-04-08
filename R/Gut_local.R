@@ -217,7 +217,7 @@ Gut_local<-function(name,key,savefile,PATH,GWASsummay,outname,local_clump=F,kb,r
         cat("请前往切分好的肠道菌群暴露文件下删除",
             i, "文件再次重新运行")
       }}
-    
+    }
     cat("当前分析已全部完成！请前往", savefile,
         "文件夹下查看结果")
   }
