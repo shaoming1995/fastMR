@@ -161,7 +161,7 @@ Gut_local<-function(name,key,savefile,PATH,GWASsummay,outname,local_clump=F,kb,r
       }
       else {
         total <- merge(GWASsummay, exp_temp, by = "SNP")
-        if(dim(total)[1]==0){
+        if(class(total)=="NULL"){
           Ename <- paste0(savefile, "/", "肠道菌群与",
                         outname, "未匹配到工具变量的菌群ID.csv")
           E_temp <- rbind(i, E_temp)
@@ -178,24 +178,20 @@ Gut_local<-function(name,key,savefile,PATH,GWASsummay,outname,local_clump=F,kb,r
         dat <- harmonise_data(exposure_dat = exp3, outcome_dat = out3,
                               action = 2)
         data_h<-dat%>%subset(dat$mr_keep==TRUE)
+          print(data_h)
         data_h$Fvalue <- (data_h$beta.exposure/data_h$se.exposure)*(data_h$beta.exposure/data_h$se.exposure)
         data_h_TableS1 <- data_h[, c("exposure","SNP","effect_allele.exposure", "other_allele.exposure",
                                      "beta.exposure", "se.exposure","Fvalue","pval.exposure",
                                      "beta.outcome","se.outcome", "pval.outcome")]
-          if(class(data_h_TableS1)=="NULL"){
-          Fname <- paste0(savefile, "/", "肠道菌群与",
-                        outname, "匹配到工具变量的被回文等过滤的菌群ID.csv")
-          F_temp <- rbind(i, F_temp)
-          write.csv(F_temp, Fname, row.names = F)}else{
         data_h_TableS1$cluster <- 1
-        res <- mr(data_h)
+        res<-mr(data_h)
         res$cluster <- 1
         mr_OR<-generate_odds_ratios(res)
         mr_OR$or<-round(mr_OR$or,3)
         mr_OR$or_lci95<-round(mr_OR$or_lci95,3)
         mr_OR$or_uci95 <- round(mr_OR$or_uci95,3)
         mr_OR$OR_CI <- paste0(mr_OR$or,"(",mr_OR$or_lci95,"-",mr_OR$or_uci95,")")
-      }}}
+      }}
       if (dim(res)[[1]] != 0) {
         het <- mr_heterogeneity(dat)
         ple <- mr_pleiotropy_test(dat)
