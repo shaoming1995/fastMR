@@ -160,12 +160,13 @@ Gut_local<-function(name,key,savefile,PATH,GWASsummay,outname,local_clump=F,kb,r
       }
       else {
         total <- merge(GWASsummay, exp_temp, by = "SNP")
-        total$eaf.exposure <- NA
         if(dim(total)[1]==0){
+        
           Ename <- paste0(savefile, "/", "肠道菌群与",
                         outname, "未匹配到工具变量的菌群ID.csv")
           E_temp <- rbind(i, E_temp)
           write.csv(E_temp, Ename, row.names = F)}else{
+            total$eaf.exposure <- NA
         exp3 <- total[, c("SNP", "effect_allele.exposure",
                           "other_allele.exposure", "beta.exposure", "se.exposure",
                           "pval.exposure", "id.exposure", "exposure",
