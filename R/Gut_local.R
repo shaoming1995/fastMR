@@ -161,7 +161,7 @@ Gut_local<-function(name,key,savefile,PATH,GWASsummay,outname,local_clump=F,kb,r
       }
       else {
         total <- merge(GWASsummay, exp_temp, by = "SNP")
-        if(class(total)=="NULL"){
+        if(dim(total)[1]==0){
           Ename <- paste0(savefile, "/", "肠道菌群与",
                         outname, "未匹配到工具变量的菌群ID.csv")
           E_temp <- rbind(i, E_temp)
