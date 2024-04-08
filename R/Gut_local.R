@@ -191,7 +191,7 @@ Gut_local<-function(name,key,savefile,PATH,GWASsummay,outname,local_clump=F,kb,r
         mr_OR$or_lci95<-round(mr_OR$or_lci95,3)
         mr_OR$or_uci95 <- round(mr_OR$or_uci95,3)
         mr_OR$OR_CI <- paste0(mr_OR$or,"(",mr_OR$or_lci95,"-",mr_OR$or_uci95,")")
-      }}
+      }
       if (dim(res)[[1]] != 0) {
         het <- mr_heterogeneity(dat)
         ple <- mr_pleiotropy_test(dat)
@@ -216,8 +216,8 @@ Gut_local<-function(name,key,savefile,PATH,GWASsummay,outname,local_clump=F,kb,r
       else {
         cat("请前往切分好的肠道菌群暴露文件下删除",
             i, "文件再次重新运行")
-      }
-    }
+      }}
+    
     cat("当前分析已全部完成！请前往", savefile,
         "文件夹下查看结果")
   }
