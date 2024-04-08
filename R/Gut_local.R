@@ -124,7 +124,7 @@ Gut_local<-function(name,key,savefile,PATH,GWASsummay,outname,local_clump=F,kb,r
                                                return(temp_dat)
                                              }
 
-                                             test2 <- (try(exp_temp <- local_clump_data(exp_temp, clump_kb = kb,
+                                             test2 <- (try(exp_temp <- local_clump_data1(exp_temp, clump_kb = kb,
                                                                                   clump_r2 = r2)))
                                            }
 
