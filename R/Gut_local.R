@@ -4,12 +4,13 @@
 #' @param savefile 设置一个保存结果的文件夹名字
 #' @param PATH 切分的肠道菌群暴露文件位置
 #' @param GWASsummay 本地结局的预处理好的GWAS summay
+#' @param pop 输入工具变量的选择的人群,默认EUR
 #' @param local_clump 是否启动本地聚类,默认不启动
 #' @param kb 聚类距离
 #' @param r2 相关系数
 #' @param outname 本地结局的名称
 #' @export
-Gut_local<-function(name,key,savefile,PATH,GWASsummay,outname,local_clump=F,kb,r2){
+Gut_local<-function(name,key,savefile,PATH,GWASsummay,outname,local_clump=F,kb,r2,pop="EUR"){
   A <- name
   A <- as.numeric(gsub("DK", "00", A))
   C <- A + key
@@ -125,7 +126,7 @@ Gut_local<-function(name,key,savefile,PATH,GWASsummay,outname,local_clump=F,kb,r
                                              }
 
                                              test2 <- (try(exp_temp <- local_clump_data1(exp_temp, clump_kb = kb,
-                                                                                  clump_r2 = r2)))
+                                                                                  clump_r2 = r2,pop=pop)))
                                            }
 
       if (class(test2) == "try-error") {
