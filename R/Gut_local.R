@@ -22,6 +22,7 @@ Gut_local<-function(name,key,savefile,PATH,GWASsummay,outname,local_clump=F,kb,r
     B_temp <- c()
     C_temp <- c()
     D_temp <- c()
+    E_temp <-c()
     for (i in filename[, 1]) {
       ipath <- paste0(PATH, "/", i)
       exp_temp <- read.csv(ipath, header = T)
@@ -160,6 +161,11 @@ Gut_local<-function(name,key,savefile,PATH,GWASsummay,outname,local_clump=F,kb,r
       else {
         total <- merge(GWASsummay, exp_temp, by = "SNP")
         total$eaf.exposure <- NA
+        if(dim(total)[1]==0){
+          Ename <- paste0(savefile, "/", "肠道菌群与",
+                        outname, "未匹配到工具变量的菌群ID.csv")
+          E_temp <- rbind(i, E_temp)
+          write.csv(E_temp, Ename, row.names = F)}else{
         exp3 <- total[, c("SNP", "effect_allele.exposure",
                           "other_allele.exposure", "beta.exposure", "se.exposure",
                           "pval.exposure", "id.exposure", "exposure",
@@ -183,7 +189,7 @@ Gut_local<-function(name,key,savefile,PATH,GWASsummay,outname,local_clump=F,kb,r
         mr_OR$or_lci95<-round(mr_OR$or_lci95,3)
         mr_OR$or_uci95 <- round(mr_OR$or_uci95,3)
         mr_OR$OR_CI <- paste0(mr_OR$or,"(",mr_OR$or_lci95,"-",mr_OR$or_uci95,")")
-      }
+      }}
       if (dim(res)[[1]] != 0) {
 
         het <- mr_heterogeneity(dat)
