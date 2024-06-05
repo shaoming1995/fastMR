@@ -1,27 +1,5 @@
-#' @title 适用暴露结局均来自IEU的标准单变量孟德尔随机化分析
-#' @param keyssh 密钥
-#' @param GWASID_exp 输入暴露的GWAS ID号
-#' @param GWASID_out 输入结局的GWAS ID号
-#' @param name_exposure 输入暴露的名称，默认是exposure
-#' @param samplesize_exposure 输入暴露数据的样本量，默认100000
-#' @param samplesize_outcome 输入结局数据的样本量，默认100000
-#' @param name_outcome 输入结局的名称，默认outcome
-#' @param confonding_SNP 输入需要去除的混杂因素的rsid
-#' @param local_clump 是否启动本地聚类，默认是FALSE
-#' @param confonding_name 输入需要去除的混杂因素
-#' @param clump_p1 输入工具变量的选择P值,默认5e-08
-#' @param clump_r2 输入工具变量的选择的r2,默认0.001
-#' @param clump_kb 输入工具变量的选择的距离,默认10000
-#' @param pop 输入工具变量的选择的人群,默认EUR
-#' @param outfile 输入分析结果的文件夹
-#' @param presso 是否进行MRPRESSO，默认是FALSE
-#' @param steiger 是否进行反向过滤，默认是TURE
-#' @param Fvalue 是否计算F值，默认是TURE
-#' @param pt 是否进行绘图，默认是TURE
-#' @export
-
 stand_UVMR_IEU_IEU<-function(keyssh,GWASID_exp,GWASID_out,name_exposure="exposure",samplesize_exposure=100000,samplesize_outcome=100000,name_outcome="outcome",confounding_search=T,
-                               local_clump=F,confonding_SNP=NULL,clump_p1=5e-08,clump_r2=0.001,clump_kb=10000,pop="EUR",outfile="MR结果",presso=F,
+                               local_clump=F,confounding_SNP=NULL,clump_p1=5e-08,clump_r2=0.001,clump_kb=10000,pop="EUR",outfile="MR结果",presso=F,
                                steiger=T,Fvalue=T,pt=T){
   if (Sys.info()["nodename"] == keyssh) {
   PhenoScanSNP0<-function(N){
@@ -203,8 +181,8 @@ stand_UVMR_IEU_IEU<-function(keyssh,GWASID_exp,GWASID_out,name_exposure="exposur
 
   EXP$id.exposure<-name_exposure
   EXP$exposure<-name_exposure
-  EXP$samplesize.exposure<-samplesize_exposure
-EXP$samplesize.exposure<-as.numeric(EXP$samplesize.exposure)
+  EXP$samplesize_exposure<-samplesize_exposure
+
   OUT<-extract_outcome_data(snps=EXP$SNP,outcomes=GWASID_out,proxies=T,maf_threshold = 0.01,access_token = NULL)
   OUT$id.outcome=name_outcome
   OUT$outcome=name_outcome
@@ -311,7 +289,7 @@ EXP$samplesize.exposure<-as.numeric(EXP$samplesize.exposure)
           temp_dat$pval <- NULL
           return(temp_dat)
         }
-        expiv<- local_clump_data1(expiv,clump_kb = clump_kb,clump_r2 = clump_r2,pop = pop)
+        expiv<- local_clump_data(expiv,clump_kb = clump_kb,clump_r2 = clump_r2,pop = pop)
       }
     if(Fvalue==T){
       expiv$R2<-expiv$beta.exposure*expiv$beta.exposure*2*(expiv$eaf.exposure)*(1-expiv$eaf.exposure)
@@ -323,7 +301,7 @@ EXP$samplesize.exposure<-as.numeric(EXP$samplesize.exposure)
       #去除与结局有gwas显著性的SNPs以及可能重复的SNP
       total1<-subset(total1,pval.outcome>5e-08)
       total1<-total1[!duplicated(total1$SNP),]
-       if(dim(total1)[[1]]!=0){
+      if(dim(total1)[[1]]!=0){
         #confonding_name<-c("Whole body fat mass","Arm fat mass left")
         # Atemp<- read.csv(path00,header = T,row.names = 1)  #PhenoScanSNP1(dim(total1)[[1]])
         # Atemp0<-Atemp%>%filter(trait %in% confonding_name)
@@ -401,7 +379,12 @@ EXP$samplesize.exposure<-as.numeric(EXP$samplesize.exposure)
             pathpre2<-paste0(getwd(),"/",outfile,"/RSSobs.csv")
             write.csv(res_mrpresso, pathpre2, row.names = F)}
       }else{cat("当前阈值可能严格，未找到工具变量")}
+    }
+    else{cat("当前阈值可能严格，未找到工具变量")}
+    warning("此R包由作者邵明个人编制供MR爱好者免费使用，请关注抖音号793742981（医小研）")
   }
-  else{cat("当前阈值可能严格，未找到工具变量")}
-  warning("此R包由作者邵明个人编制供MR爱好者免费使用，请关注抖音号793742981（医小研）")
+  else {
+    warning("keyssh不正确,请联系管理员微信SFM19950928或DKYXS666获取密钥")
+  }
+  }
 }
