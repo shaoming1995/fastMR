@@ -8,9 +8,6 @@
 #' @param filename 输出结果的文件夹名称
 #' @export
 Find_nearest_gene<-function(data,flanking = 0, snp_col='rsid',chr_col='chromosome', bp_col='position',build = "hg19",filename="匹配基因文件"){
-"hg18genelist"
-"hg19genelist"
-"hg38genelist"
   library(dplyr)
   data1<-data[,c(snp_col,chr_col,bp_col)]#染色体 位置 SNP
   find_nearest_gene1 <-function(data, flanking=100, build='hg19', collapse=TRUE, snp='rsid', chr='chromosome', bp='position'){

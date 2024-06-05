@@ -8,9 +8,8 @@ stand_UVMR_local_local(
   keyssh,
   expgwas,
   outgwas,
-  confounding_search = T,
   local_clump = F,
-  confonding_name = NULL,
+  confonding_SNP = NULL,
   clump_p1 = 5e-08,
   clump_r2 = 0.001,
   clump_kb = 10000,
@@ -29,11 +28,9 @@ stand_UVMR_local_local(
 
 \item{outgwas}{输入结局的GWAS摘要数据}
 
-\item{confounding_search}{是否查询混杂因素，默认是TURE}
-
 \item{local_clump}{是否启动本地聚类，默认是FALSE}
 
-\item{confonding_name}{输入需要去除的混杂因素}
+\item{confonding_SNP}{输入需要去除的混杂因素}
 
 \item{clump_p1}{输入工具变量的选择P值,默认5e-08}
 

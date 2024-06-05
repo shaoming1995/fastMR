@@ -33,7 +33,7 @@ for(ic in file[,1]){
     row_numbers <- which(file$file == ic)
     pv<-round((row_numbers/nrow(file))*100,4)
     cat("已完成",pv,"%")}else{
-      G_temp <- rbind(G_temp, ic)%>%data.frame()
+      G_temp <- rbind(G_temp, id)%>%data.frame()
       G_temp$reason<-"Num_iv<3"
       write.csv(G_temp, "NOLOO.csv", row.names = F)}}
   }

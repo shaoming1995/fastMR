@@ -12,9 +12,8 @@ stand_UVMR_IEU_IEU(
   samplesize_exposure = 1e+05,
   samplesize_outcome = 1e+05,
   name_outcome = "outcome",
-  confounding_search = T,
   local_clump = F,
-  confonding_name = NULL,
+  confounding_SNP = NULL,
   clump_p1 = 5e-08,
   clump_r2 = 0.001,
   clump_kb = 10000,
@@ -41,11 +40,9 @@ stand_UVMR_IEU_IEU(
 
 \item{name_outcome}{输入结局的名称，默认outcome}
 
-\item{confounding_search}{是否查询混杂因素，默认是TURE}
-
 \item{local_clump}{是否启动本地聚类，默认是FALSE}
 
-\item{confonding_name}{输入需要去除的混杂因素}
+\item{confounding_SNP}{输入需要去除的混杂因素的rsid}
 
 \item{clump_p1}{输入工具变量的选择P值,默认5e-08}
 

@@ -11,192 +11,17 @@
 #' @param outfile 输入分析结果的文件夹
 #' @param steiger 是否进行反向过滤，默认是TURE
 #' @param Fvalue 是否计算F值，默认是TURE
-#' @param confounding_search 是否查询混杂因素，默认是TURE
-#' @param confonding_name 输入需要去除的混杂因素
+#' @param confounding_SNP 是否查询混杂因素，默认是TURE
 #' @param local_clump 是否启动本地聚类，默认是FALSE
 #' @param pt 是否进行绘图，默认是TURE
 #' @param presso 是否进行MRPRESSO，默认是FALSE
 #' @export
 
-stand_UVMR_local_IEU<-function(keyssh,expgwas,GWASID,samplesize_outcome=100000,name_outcome="outcome",confounding_search=T,
-                                 local_clump=F,confonding_name=NULL,clump_p1=5e-08,clump_r2=0.001,clump_kb=10000,pop="EUR",outfile="MR结果",presso=F,
+stand_UVMR_local_IEU<-function(keyssh,expgwas,GWASID,samplesize_outcome=100000,name_outcome="outcome",
+                                 local_clump=F,confounding_SNP=NULL,clump_p1=5e-08,clump_r2=0.001,clump_kb=10000,pop="EUR",outfile="MR结果",presso=F,
                                  steiger=T,Fvalue=T,pt=T){
 
   if (Sys.info()["nodename"] == keyssh){
-  PhenoScanSNP0<-function(N){
-    if (!require("phenoscanner", quiet = TRUE))
-      devtools::install_github("phenoscanner/phenoscanner")
-    library(phenoscanner)
-    n0<-N%/%100
-    path0<-paste0(outfile,"/PhenoScan")
-    path<-dir.create(path0)
-    if(n0==0){
-      PhenoScan=phenoscanner(snpquery=total1$SNP[1:N],pvalue = 5e-08)
-      PhenoScan=PhenoScan$result
-      #导出数据
-      #return(PhenoScan)
-      path00<-paste0(path0,"/PhenoScan.csv")
-      write.csv(PhenoScan,file=path00)
-    }
-    if(n0==1){
-      PhenoScan1=phenoscanner(snpquery=total1$SNP[1:100],pvalue = 5e-08)
-      PhenoScan2=phenoscanner(snpquery=total1$SNP[101:N],pvalue = 5e-08)
-      PhenoScan<-rbind(PhenoScan1$result,PhenoScan2$result)
-      #导出数据
-      #return(PhenoScan)
-      path00<-paste0(path0,"/PhenoScan.csv")
-      write.csv(PhenoScan,file=path00)
-    }
-    if(n0==2){
-      PhenoScan1=phenoscanner(snpquery=total1$SNP[1:100],pvalue = 5e-08)
-      PhenoScan2=phenoscanner(snpquery=total1$SNP[101:200],pvalue = 5e-08)
-      PhenoScan3=phenoscanner(snpquery=total1$SNP[201:N],pvalue = 5e-08)
-      PhenoScan<-rbind(PhenoScan1$result,PhenoScan2$result,PhenoScan3$result)
-      #导出数据
-      #return(PhenoScan)
-      path00<-paste0(path0,"/PhenoScan.csv")
-      write.csv(PhenoScan,file=path00)
-    }
-    if(n0==3){
-      PhenoScan1=phenoscanner(snpquery=total1$SNP[1:100],pvalue = 5e-08)
-      PhenoScan2=phenoscanner(snpquery=total1$SNP[101:200],pvalue = 5e-08)
-      PhenoScan3=phenoscanner(snpquery=total1$SNP[201:300],pvalue = 5e-08)
-      PhenoScan4=phenoscanner(snpquery=total1$SNP[301:N],pvalue = 5e-08)
-      PhenoScan<-rbind(PhenoScan1$result,PhenoScan2$result,PhenoScan3$result,PhenoScan4$result)
-      #导出数据
-      # return(PhenoScan)
-      path00<-paste0(path0,"/PhenoScan.csv")
-      write.csv(PhenoScan,file=path00)
-    }
-    if(n0==4){
-      PhenoScan1=phenoscanner(snpquery=total1$SNP[1:100],pvalue = 5e-08)
-      PhenoScan2=phenoscanner(snpquery=total1$SNP[101:200],pvalue = 5e-08)
-      PhenoScan3=phenoscanner(snpquery=total1$SNP[201:300],pvalue = 5e-08)
-      PhenoScan4=phenoscanner(snpquery=total1$SNP[301:400],pvalue = 5e-08)
-      PhenoScan5=phenoscanner(snpquery=total1$SNP[401:N],pvalue = 5e-08)
-      PhenoScan<-rbind(PhenoScan1$result,PhenoScan2$result,PhenoScan3$result,PhenoScan4$result,PhenoScan5$result)
-      #导出数据
-      #return(PhenoScan)
-      path00<-paste0(path0,"/PhenoScan.csv")
-      write.csv(PhenoScan,file=path00)
-    }
-    if(n0==5){
-      PhenoScan1=phenoscanner(snpquery=total1$SNP[1:100],pvalue = 5e-08)
-      PhenoScan2=phenoscanner(snpquery=total1$SNP[101:200],pvalue = 5e-08)
-      PhenoScan3=phenoscanner(snpquery=total1$SNP[201:300],pvalue = 5e-08)
-      PhenoScan4=phenoscanner(snpquery=total1$SNP[301:400],pvalue = 5e-08)
-      PhenoScan5=phenoscanner(snpquery=total1$SNP[401:500],pvalue = 5e-08)
-      PhenoScan6=phenoscanner(snpquery=total1$SNP[501:N],pvalue = 5e-08)
-      PhenoScan<-rbind(PhenoScan1$result,PhenoScan2$result,PhenoScan3$result,PhenoScan4$result,PhenoScan5$result,PhenoScan6$result)
-      #导出数据
-      #return(PhenoScan)
-      path00<-paste0(path0,"/PhenoScan.csv")
-      write.csv(PhenoScan,file=path00)
-    }
-
-    if(n0==6){
-      PhenoScan1=phenoscanner(snpquery=total1$SNP[1:100],pvalue = 5e-08)
-      PhenoScan2=phenoscanner(snpquery=total1$SNP[101:200],pvalue = 5e-08)
-      PhenoScan3=phenoscanner(snpquery=total1$SNP[201:300],pvalue = 5e-08)
-      PhenoScan4=phenoscanner(snpquery=total1$SNP[301:400],pvalue = 5e-08)
-      PhenoScan5=phenoscanner(snpquery=total1$SNP[401:500],pvalue = 5e-08)
-      PhenoScan6=phenoscanner(snpquery=total1$SNP[501:600],pvalue = 5e-08)
-      PhenoScan7=phenoscanner(snpquery=total1$SNP[601:N],pvalue = 5e-08)
-      PhenoScan<-rbind(PhenoScan1$result,PhenoScan2$result,PhenoScan3$result,PhenoScan4$result,PhenoScan5$result,PhenoScan6$result,PhenoScan7$result)
-      #导出数据
-      #return(PhenoScan)
-      path00<-paste0(path0,"/PhenoScan.csv")
-      write.csv(PhenoScan,file=path00)
-    }
-    if(n0==7){
-      PhenoScan1=phenoscanner(snpquery=total1$SNP[1:100],pvalue = 5e-08)
-      PhenoScan2=phenoscanner(snpquery=total1$SNP[101:200],pvalue = 5e-08)
-      PhenoScan3=phenoscanner(snpquery=total1$SNP[201:300],pvalue = 5e-08)
-      PhenoScan4=phenoscanner(snpquery=total1$SNP[301:400],pvalue = 5e-08)
-      PhenoScan5=phenoscanner(snpquery=total1$SNP[401:500],pvalue = 5e-08)
-      PhenoScan6=phenoscanner(snpquery=total1$SNP[501:600],pvalue = 5e-08)
-      PhenoScan7=phenoscanner(snpquery=total1$SNP[601:700],pvalue = 5e-08)
-      PhenoScan8=phenoscanner(snpquery=total1$SNP[701:N],pvalue = 5e-08)
-      PhenoScan<-rbind(PhenoScan1$result,PhenoScan2$result,PhenoScan3$result,PhenoScan4$result,PhenoScan5$result,
-                       PhenoScan6$result,PhenoScan7$result,PhenoScan8$result)
-      #导出数据
-      #return(PhenoScan)
-      path00<-paste0(path0,"/PhenoScan.csv")
-      write.csv(PhenoScan,file=path00)
-    }
-    if(n0==8){
-      PhenoScan1=phenoscanner(snpquery=total1$SNP[1:100],pvalue = 5e-08)
-      PhenoScan2=phenoscanner(snpquery=total1$SNP[101:200],pvalue = 5e-08)
-      PhenoScan3=phenoscanner(snpquery=total1$SNP[201:300],pvalue = 5e-08)
-      PhenoScan4=phenoscanner(snpquery=total1$SNP[301:400],pvalue = 5e-08)
-      PhenoScan5=phenoscanner(snpquery=total1$SNP[401:500],pvalue = 5e-08)
-      PhenoScan6=phenoscanner(snpquery=total1$SNP[501:600],pvalue = 5e-08)
-      PhenoScan7=phenoscanner(snpquery=total1$SNP[601:700],pvalue = 5e-08)
-      PhenoScan8=phenoscanner(snpquery=total1$SNP[701:800],pvalue = 5e-08)
-      PhenoScan9=phenoscanner(snpquery=total1$SNP[801:N],pvalue = 5e-08)
-      PhenoScan<-rbind(PhenoScan1$result,PhenoScan2$result,PhenoScan3$result,PhenoScan4$result,PhenoScan5$result,
-                       PhenoScan6$result,PhenoScan7$result,PhenoScan8$result,PhenoScan9$resul)
-      #导出数据
-      #return(PhenoScan)
-      path00<-paste0(path0,"/PhenoScan.csv")
-      write.csv(PhenoScan,file=path00)
-    }
-
-    cat("请前往PhenoScan文件下查看混杂因素查询结果")
-  }
-  PhenoScanSNP1<-function(N){
-    if (!require("phenoscanner", quiet = TRUE))
-      devtools::install_github("phenoscanner/phenoscanner")
-    library(phenoscanner)
-    n0<-N%/%100
-    #path<-dir.create("PhenoScan")
-    if(n0==0){
-      PhenoScan=phenoscanner(snpquery=total1$SNP[1:N],pvalue = 5e-08)
-      PhenoScan=PhenoScan$result
-      #导出数据
-      return(PhenoScan)
-      #write.csv(PhenoScan,file="PhenoScan/PhenoScan.csv")
-    }
-    if(n0==1){
-      PhenoScan1=phenoscanner(snpquery=total1$SNP[1:100],pvalue = 5e-08)
-      PhenoScan2=phenoscanner(snpquery=total1$SNP[101:N],pvalue = 5e-08)
-      PhenoScan<-rbind(PhenoScan1$result,PhenoScan2$result)
-      #导出数据
-      return(PhenoScan)
-      #write.csv(PhenoScan,file="PhenoScan/PhenoScan.csv")
-    }
-    if(n0==2){
-      PhenoScan1=phenoscanner(snpquery=total1$SNP[1:100],pvalue = 5e-08)
-      PhenoScan2=phenoscanner(snpquery=total1$SNP[101:200],pvalue = 5e-08)
-      PhenoScan3=phenoscanner(snpquery=total1$SNP[201:N],pvalue = 5e-08)
-      PhenoScan<-rbind(PhenoScan1$result,PhenoScan2$result,PhenoScan3$result)
-      #导出数据
-      return(PhenoScan)
-      #write.csv(PhenoScan,file="PhenoScan/PhenoScan.csv")
-    }
-    if(n0==3){
-      PhenoScan1=phenoscanner(snpquery=total1$SNP[1:100],pvalue = 5e-08)
-      PhenoScan2=phenoscanner(snpquery=total1$SNP[101:200],pvalue = 5e-08)
-      PhenoScan3=phenoscanner(snpquery=total1$SNP[201:300],pvalue = 5e-08)
-      PhenoScan4=phenoscanner(snpquery=total1$SNP[301:N],pvalue = 5e-08)
-      PhenoScan<-rbind(PhenoScan1$result,PhenoScan2$result,PhenoScan3$result,PhenoScan4$result)
-      #导出数据
-      return(PhenoScan)
-      #write.csv(PhenoScan,file="PhenoScan/PhenoScan.csv")
-    }
-    if(n0==4){
-      PhenoScan1=phenoscanner(snpquery=total1$SNP[1:100],pvalue = 5e-08)
-      PhenoScan2=phenoscanner(snpquery=total1$SNP[101:200],pvalue = 5e-08)
-      PhenoScan3=phenoscanner(snpquery=total1$SNP[201:300],pvalue = 5e-08)
-      PhenoScan4=phenoscanner(snpquery=total1$SNP[301:400],pvalue = 5e-08)
-      PhenoScan5=phenoscanner(snpquery=total1$SNP[401:N],pvalue = 5e-08)
-      PhenoScan<-rbind(PhenoScan1$result,PhenoScan2$result,PhenoScan3$result,PhenoScan4$result,PhenoScan5$result)
-      #导出数据
-      return(PhenoScan)
-      #write.csv(PhenoScan,file="PhenoScan/PhenoScan.csv")
-    }
-    cat("请前往PhenoScan文件下查看混杂因素查询结果")
-  }
   dir.create(outfile)
   EXP<-expgwas[,c("SNP",
                   "effect_allele.exposure",
@@ -308,7 +133,7 @@ stand_UVMR_local_IEU<-function(keyssh,expgwas,GWASID,samplesize_outcome=100000,n
         temp_dat$pval <- NULL
         return(temp_dat)
       }
-      expiv<- local_clump_data1(expiv,clump_kb = clump_kb,clump_r2 = clump_r2,pop = pop)
+      expiv<- local_clump_data(expiv,clump_kb = clump_kb,clump_r2 = clump_r2,pop = pop)
     }
   if(Fvalue==T){
     expiv$R2<-expiv$beta.exposure*expiv$beta.exposure*2*(expiv$eaf.exposure)*(1-expiv$eaf.exposure)
@@ -322,17 +147,12 @@ stand_UVMR_local_IEU<-function(keyssh,expgwas,GWASID,samplesize_outcome=100000,n
   OUT<-subset(OUT,pval.outcome>5e-08)
   OUT<-OUT[!duplicated(OUT$SNP),]
   total1<-merge(OUT,expiv,by.x="SNP",by.y="SNP",all = F)
-    if(confounding_search==T){
-      PhenoScanSNP0(dim(total1)[[1]])
-    }else{
       if(dim(total1)[[1]]!=0){
         #confonding_name<-c("Whole body fat mass","Arm fat mass left")
-        path0<-paste0(getwd(),"/",outfile,"/PhenoScan")
-        path00<-paste0(path0,"/PhenoScan.csv")
-        Atemp<- read.csv(path00,header = T,row.names = 1)  #PhenoScanSNP1(dim(total1)[[1]])
-        Atemp0<-Atemp%>%filter(trait %in% confonding_name)
-        Atemp0<-Atemp0[!duplicated(Atemp0$snp),]
-        total1<-total1%>% filter(!SNP %in%Atemp0$snp)
+        # Atemp<- read.csv(path00,header = T,row.names = 1)  #PhenoScanSNP1(dim(total1)[[1]])
+        # Atemp0<-Atemp%>%filter(trait %in% confonding_name)
+        # Atemp0<-Atemp0[!duplicated(Atemp0$snp),]
+        total1<-total1%>% filter(!SNP %in%confonding_SNP)
         #分别取出暴露与结局的数据
         EXP1<-total1[,c("SNP","effect_allele.exposure","other_allele.exposure", "eaf.exposure",
                         "beta.exposure","se.exposure", "pval.exposure","id.exposure","exposure",
@@ -405,7 +225,7 @@ stand_UVMR_local_IEU<-function(keyssh,expgwas,GWASID,samplesize_outcome=100000,n
           pathpre2<-paste0(getwd(),"/",outfile,"/RSSobs.csv")
           write.csv(res_mrpresso, pathpre2, row.names = F)}
       }else{cat("当前阈值可能严格，未找到工具变量")}
-    }
+
   }
   else{cat("当前阈值可能严格，未找到工具变量")}
   warning("此R包由作者邵明编制，请关注抖音号793742981或者顶刊研习社公众号")

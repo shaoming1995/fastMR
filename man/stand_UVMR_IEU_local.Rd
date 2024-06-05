@@ -5,14 +5,12 @@
 \title{适用暴露来自IEU结局来自本地数据的标准单变量孟德尔随机化分析}
 \usage{
 stand_UVMR_IEU_local(
-  keyssh,
   GWASID,
   outgwas,
   samplesize_exposure = 1e+05,
   name_exposure = "exposure",
-  confounding_search = T,
   local_clump = F,
-  confonding_name = NULL,
+  confonding_SNP = NULL,
   clump_p1 = 5e-08,
   clump_r2 = 0.001,
   clump_kb = 10000,
@@ -25,8 +23,6 @@ stand_UVMR_IEU_local(
 )
 }
 \arguments{
-\item{keyssh}{密钥}
-
 \item{GWASID}{输入暴露的GWAS ID号}
 
 \item{outgwas}{输入结局的GWAS摘要数据}
@@ -35,11 +31,7 @@ stand_UVMR_IEU_local(
 
 \item{name_exposure}{输入暴露的名称，默认是exposure}
 
-\item{confounding_search}{是否查询混杂因素，默认是TURE}
-
 \item{local_clump}{是否启动本地聚类，默认是FALSE}
-
-\item{confonding_name}{输入需要去除的混杂因素}
 
 \item{clump_p1}{输入工具变量的选择P值,默认5e-08}
 
@@ -58,6 +50,10 @@ stand_UVMR_IEU_local(
 \item{Fvalue}{是否计算F值，默认是TURE}
 
 \item{pt}{是否进行绘图，默认是TURE}
+
+\item{keyssh}{密钥}
+
+\item{confounding_SNP}{输入需要去除的混杂因素的rsid}
 }
 \description{
 适用暴露来自IEU结局来自本地数据的标准单变量孟德尔随机化分析

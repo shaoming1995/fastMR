@@ -1,9 +1,9 @@
 Package: fastMR
 Title: What the Package Does (One Line, Title Case)
-Version: 0.24.01.29
+Version: 0.24.06.5
 Authors@R: 
     person("Ming", "Shao", , "shaoming0928@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Description: A brief description of your package.
 License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
     license
 Encoding: UTF-8

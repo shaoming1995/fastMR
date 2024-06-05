@@ -8,6 +8,7 @@
 inmm_cell_pre<-function(inputfile,savefile,exp_or_out=T,P_exp=1e-05,P_out=5e-08){
 library(tidyr)
 file<-dir(inputfile)%>%data.frame()
+
 for(i in 1:nrow(file)){
   dir.create(savefile)
   path<-paste0(inputfile,"/",file[i,1])

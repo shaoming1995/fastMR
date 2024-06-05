@@ -36,12 +36,12 @@ IEU_2_to_local_1<-function(keyssh,data1IV,GWASID1,data2IV,GWASID2,data3IV,data3G
     colnames(data_h_SNP_steiger_mv3_2)<-exp_name
 
     #去EXP1和EXP2和EXP3GWAS summary中去淘暴露4的工具变量
-    #data_h_SNP_steiger_mv4_1<-extract_outcome_data(snps=data4IV$SNP,outcomes=GWASID1,proxies=T,maf_threshold = 0.01,access_token = NULL)
-    #data_h_SNP_steiger_mv4_1<-data_h_SNP_steiger_mv4_1[,out_name]
-    #colnames(data_h_SNP_steiger_mv4_1)<-exp_name
-    #data_h_SNP_steiger_mv4_2<-extract_outcome_data(snps=data4IV$SNP,outcomes=GWASID2,proxies=T,maf_threshold = 0.01,access_token = NULL)
-    #data_h_SNP_steiger_mv4_2<-data_h_SNP_steiger_mv4_2[,out_name]
-    #colnames(data_h_SNP_steiger_mv3_2)<-exp_name
+    data_h_SNP_steiger_mv4_1<-extract_outcome_data(snps=data4IV$SNP,outcomes=GWASID1,proxies=T,maf_threshold = 0.01,access_token = NULL)
+    data_h_SNP_steiger_mv4_1<-data_h_SNP_steiger_mv4_1[,out_name]
+    colnames(data_h_SNP_steiger_mv4_1)<-exp_name
+    data_h_SNP_steiger_mv4_2<-extract_outcome_data(snps=data4IV$SNP,outcomes=GWASID2,proxies=T,maf_threshold = 0.01,access_token = NULL)
+    data_h_SNP_steiger_mv4_2<-data_h_SNP_steiger_mv4_2[,out_name]
+    colnames(data_h_SNP_steiger_mv3_2)<-exp_name
 
     #开始合并暴露工具变量
     MVIV1_1<-data1IV[,exp_name]#自己本身的IVs

@@ -36,6 +36,10 @@ Omic_local<-function(keyssh,fac_cell_met=1,savefile="MR结果",omicfile,finish_o
     N=1400
     nm<-"血浆代谢"
   }
+  if(fac_cell_met==4){
+    N=211
+    nm<-"肠道菌群"
+  }
   if(presso==F){
   if (Sys.info()["nodename"] == keyssh) {
     dir.create(savefile)
@@ -145,7 +149,7 @@ Omic_local<-function(keyssh,fac_cell_met=1,savefile="MR结果",omicfile,finish_o
             temp_dat$pval <- NULL
             return(temp_dat)
           }
-          expiv<- local_clump_data1(expiv,clump_kb = clump_kb,clump_r2 = clump_r2,pop = pop)
+          expiv<- local_clump_data(expiv,clump_kb = clump_kb,clump_r2 = clump_r2,pop = pop)
         }
         expiv$R2<-expiv$beta.exposure*expiv$beta.exposure*2*(expiv$eaf.exposure)*(1-expiv$eaf.exposure)
         expiv$Fvalue<-(expiv$samplesize.exposure-2)*expiv$R2/(1-expiv$R2)
@@ -207,19 +211,19 @@ Omic_local<-function(keyssh,fac_cell_met=1,savefile="MR结果",omicfile,finish_o
               write.csv(B_temp,pt2, row.names = F)
               write.csv(C_temp,pt3, row.names = F)
               write.csv(D_temp,pt4, row.names = F) }else{H_temp1 <- rbind(H_temp1, id)%>%data.frame()
-              H_temp1$reason<-"因不满足反向过滤被排除的代谢物"
+              H_temp1$reason<-paste0("因不满足反向过滤被排除的",nm)
               pt5<-paste0(getwd(),"/",savefile,"/NOsteigerid.csv")
               write.csv(H_temp1,pt5, row.names = F)}
           }else{H_temp2 <- rbind(H_temp2, id)%>%data.frame()
-          H_temp2$reason<-"因不满足回文等被排除的代谢物"
+          H_temp2$reason<-paste0("因不满足回文等被排除的",nm)
           pt6<-paste0(getwd(),"/",savefile,"/NOclumpid.csv")
           write.csv(H_temp2, pt6, row.names = F)}
           }else{H_temp3 <- rbind(H_temp3, id)%>%data.frame()
-          H_temp3$reason<-"因无法匹配到工具变量被排除的代谢物"
+          H_temp3$reason<-paste0("因无法匹配到工具变量被排除的",nm)
           pt7<-paste0(getwd(),"/",savefile,"/NOmergeid.csv")
           write.csv(H_temp3, pt7, row.names = F)}
         }else{H_temp4 <- rbind(H_temp4, id)%>%data.frame()
-          H_temp4$reason<-"因不满足F值大于10被排除的代谢物"
+          H_temp4$reason<-paste0("因不满足F值大于10被排除的",nm)
           pt8<-paste0(getwd(),"/",savefile,"/NOF10id.csv")
           write.csv(H_temp4, pt8, row.names = F)}
           print(id)

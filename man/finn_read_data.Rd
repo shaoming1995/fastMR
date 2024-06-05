@@ -12,6 +12,8 @@ finn_read_data(file, name, exp_or_out = T, N)
 \item{name}{输入表型名称}
 
 \item{exp_or_out}{是否作为暴露数据集，默认是T}
+
+\item{N}{样本量大小}
 }
 \description{
 来源芬兰数据库： https://www.finngen.fi/fi/hyodynna_tuloksia
