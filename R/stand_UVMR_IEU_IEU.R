@@ -8,7 +8,6 @@
 #' @param name_outcome 输入结局的名称，默认outcome
 #' @param confounding_SNP 输入需要去除的混杂因素的rsid
 #' @param local_clump 是否启动本地聚类，默认是FALSE
-#' @param confonding_name 输入需要去除的混杂因素
 #' @param clump_p1 输入工具变量的选择P值,默认5e-08
 #' @param clump_r2 输入工具变量的选择的r2,默认0.001
 #' @param clump_kb 输入工具变量的选择的距离,默认10000
