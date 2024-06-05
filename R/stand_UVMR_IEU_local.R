@@ -18,7 +18,7 @@
 #' @export
 
 stand_UVMR_IEU_local<-function(GWASID,outgwas,samplesize_exposure=100000,name_exposure="exposure",
-                                 local_clump=F,confonding_SNP=NULL,clump_p1=5e-08,clump_r2=0.001,clump_kb=10000,pop="EUR",outfile="MR结果",presso=F,
+                                 local_clump=F,confounding_SNP=NULL,clump_p1=5e-08,clump_r2=0.001,clump_kb=10000,pop="EUR",outfile="MR结果",presso=F,
                                  steiger=T,Fvalue=T,pt=T){
   if (Sys.info()["nodename"] == keyssh) {
   dir.create(outfile)
@@ -146,7 +146,7 @@ stand_UVMR_IEU_local<-function(GWASID,outgwas,samplesize_exposure=100000,name_ex
         # Atemp<- read.csv(path00,header = T,row.names = 1)  #PhenoScanSNP1(dim(total1)[[1]])
         # Atemp0<-Atemp%>%filter(trait %in% confonding_name)
         # Atemp0<-Atemp0[!duplicated(Atemp0$snp),]
-        total1<-total1%>% filter(!SNP %in%confonding_SNP)
+        total1<-total1%>% dplyr::filter(!SNP %in%confounding_SNP)
         #分别取出暴露与结局的数据
         EXP1<-total1[,c("SNP","effect_allele.exposure","other_allele.exposure", "eaf.exposure",
                         "beta.exposure","se.exposure", "pval.exposure","id.exposure","exposure",
