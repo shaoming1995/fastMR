@@ -24,7 +24,7 @@ stand_UVMR_IEU_IEU<-function(keyssh,GWASID_exp,GWASID_out,name_exposure="exposur
                                steiger=T,Fvalue=T,pt=T){
   if (Sys.info()["nodename"] == keyssh){
   dir.create(outfile)
-  EXP<-extract_instruments(outcomes = GWASID_exp, p1 = clump_p1,clump = F,r2=clump_r2,kb=clump_kb, p2 = 5e-08,access_token = NULL)
+  EXP<-extract_instruments(outcomes = GWASID_exp, p1 = clump_p1,clump = T,r2=clump_r2,kb=clump_kb, p2 = 5e-08,access_token = NULL)
   EXP$id.exposure<-name_exposure
   EXP$exposure<-name_exposure
   EXP$samplesize_exposure<-samplesize_exposure
@@ -150,7 +150,7 @@ stand_UVMR_IEU_IEU<-function(keyssh,GWASID_exp,GWASID_out,name_exposure="exposur
         # Atemp<- read.csv(path00,header = T,row.names = 1)  #PhenoScanSNP1(dim(total1)[[1]])
         # Atemp0<-Atemp%>%filter(trait %in% confonding_name)
         # Atemp0<-Atemp0[!duplicated(Atemp0$snp),]
-        total1<-total1%>% filter(!SNP %in%confonding_SNP)
+        total1<-total1%>% dplyr::filter(!SNP %in%confounding_SNP)
           #分别取出暴露与结局的数据
           EXP1<-total1[,c("SNP","effect_allele.exposure","other_allele.exposure", "eaf.exposure",
                           "beta.exposure","se.exposure", "pval.exposure","id.exposure","exposure",
