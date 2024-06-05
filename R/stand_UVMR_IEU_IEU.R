@@ -1,3 +1,24 @@
+#' @title 适用暴露结局均来自IEU的标准单变量孟德尔随机化分析
+#' @param keyssh 密钥
+#' @param GWASID_exp 输入暴露的GWAS ID号
+#' @param GWASID_out 输入结局的GWAS ID号
+#' @param name_exposure 输入暴露的名称，默认是exposure
+#' @param samplesize_exposure 输入暴露数据的样本量，默认100000
+#' @param samplesize_outcome 输入结局数据的样本量，默认100000
+#' @param name_outcome 输入结局的名称，默认outcome
+#' @param confounding_SNP 输入需要去除的混杂因素的rsid
+#' @param local_clump 是否启动本地聚类，默认是FALSE
+#' @param confonding_name 输入需要去除的混杂因素
+#' @param clump_p1 输入工具变量的选择P值,默认5e-08
+#' @param clump_r2 输入工具变量的选择的r2,默认0.001
+#' @param clump_kb 输入工具变量的选择的距离,默认10000
+#' @param pop 输入工具变量的选择的人群,默认EUR
+#' @param outfile 输入分析结果的文件夹
+#' @param presso 是否进行MRPRESSO，默认是FALSE
+#' @param steiger 是否进行反向过滤，默认是TURE
+#' @param Fvalue 是否计算F值，默认是TURE
+#' @param pt 是否进行绘图，默认是TURE
+#' @export
 stand_UVMR_IEU_IEU<-function(keyssh,GWASID_exp,GWASID_out,name_exposure="exposure",samplesize_exposure=100000,samplesize_outcome=100000,name_outcome="outcome",confounding_search=T,
                                local_clump=F,confounding_SNP=NULL,clump_p1=5e-08,clump_r2=0.001,clump_kb=10000,pop="EUR",outfile="MR结果",presso=F,
                                steiger=T,Fvalue=T,pt=T){
