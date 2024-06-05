@@ -6,7 +6,7 @@
 #' @param samplesize_exposure 输入暴露数据的样本量，默认100000
 #' @param samplesize_outcome 输入结局数据的样本量，默认100000
 #' @param name_outcome 输入结局的名称，默认outcome
-#' @param confounding_search 是否查询混杂因素，默认是TURE
+#' @param confonding_SNP 输入需要去除的混杂因素的rsid
 #' @param local_clump 是否启动本地聚类，默认是FALSE
 #' @param confonding_name 输入需要去除的混杂因素
 #' @param clump_p1 输入工具变量的选择P值,默认5e-08
@@ -21,7 +21,7 @@
 #' @export
 
 stand_UVMR_IEU_IEU<-function(keyssh,GWASID_exp,GWASID_out,name_exposure="exposure",samplesize_exposure=100000,samplesize_outcome=100000,name_outcome="outcome",confounding_search=T,
-                               local_clump=F,confonding_name=NULL,clump_p1=5e-08,clump_r2=0.001,clump_kb=10000,pop="EUR",outfile="MR结果",presso=F,
+                               local_clump=F,confonding_SNP=NULL,clump_p1=5e-08,clump_r2=0.001,clump_kb=10000,pop="EUR",outfile="MR结果",presso=F,
                                steiger=T,Fvalue=T,pt=T){
   if (Sys.info()["nodename"] == keyssh) {
   PhenoScanSNP0<-function(N){
@@ -323,17 +323,12 @@ EXP$samplesize.exposure<-as.numeric(EXP$samplesize.exposure)
       #去除与结局有gwas显著性的SNPs以及可能重复的SNP
       total1<-subset(total1,pval.outcome>5e-08)
       total1<-total1[!duplicated(total1$SNP),]
-      if(confounding_search==T){
-        PhenoScanSNP0(dim(total1)[[1]])
-      }else{
-        if(dim(total1)[[1]]!=0){
-          #confonding_name<-c("Whole body fat mass","Arm fat mass left")
-          path0<-paste0(getwd(),"/",outfile,"/PhenoScan")
-          path00<-paste0(path0,"/PhenoScan.csv")
-          Atemp<- read.csv(path00,header = T,row.names = 1)  #PhenoScanSNP1(dim(total1)[[1]])
-          Atemp0<-Atemp%>%filter(trait %in% confonding_name)
-          Atemp0<-Atemp0[!duplicated(Atemp0$snp),]
-          total1<-total1%>% filter(!SNP %in%Atemp0$snp)
+       if(dim(total1)[[1]]!=0){
+        #confonding_name<-c("Whole body fat mass","Arm fat mass left")
+        # Atemp<- read.csv(path00,header = T,row.names = 1)  #PhenoScanSNP1(dim(total1)[[1]])
+        # Atemp0<-Atemp%>%filter(trait %in% confonding_name)
+        # Atemp0<-Atemp0[!duplicated(Atemp0$snp),]
+        total1<-total1%>% filter(!SNP %in%confonding_SNP)
           #分别取出暴露与结局的数据
           EXP1<-total1[,c("SNP","effect_allele.exposure","other_allele.exposure", "eaf.exposure",
                           "beta.exposure","se.exposure", "pval.exposure","id.exposure","exposure",
@@ -405,13 +400,8 @@ EXP$samplesize.exposure<-as.numeric(EXP$samplesize.exposure)
                                     Pvalue=mrpresso_data[["MR-PRESSO results"]][["Global Test"]][["Pvalue"]])
             pathpre2<-paste0(getwd(),"/",outfile,"/RSSobs.csv")
             write.csv(res_mrpresso, pathpre2, row.names = F)}
-        }else{cat("当前阈值可能严格，未找到工具变量")}
-      }
-    }
-    else{cat("当前阈值可能严格，未找到工具变量")}}else{cat("当前阈值可能严格，未在结局中找到工具变量")}
-  warning("此R包由作者邵明编制，请关注抖音号793742981（医小研）或者顶刊研习社公众号")
+      }else{cat("当前阈值可能严格，未找到工具变量")}
   }
-  else {
-    warning("keyssh不正确,请联系管理员微信SFM19950928或DKYXS666获取密钥")
-  }
+  else{cat("当前阈值可能严格，未找到工具变量")}
+  warning("此R包由作者邵明个人编制供MR爱好者免费使用，请关注抖音号793742981（医小研）")
 }
