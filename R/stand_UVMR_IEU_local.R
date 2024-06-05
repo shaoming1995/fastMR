@@ -32,7 +32,7 @@ stand_UVMR_IEU_local<-function(GWASID,outgwas,samplesize_exposure=100000,name_ex
                   "samplesize.outcome")]
   expiv<-subset(EXP,pval.exposure<clump_p1)
   if(local_clump==F){
-    expiv<- clump_data(expiv,clump_kb = clump_kb,clump_r2 = clump_r2,clump_p1 = 1,clump_p2 = 1,pop = pop)}else{
+    expiv<- expiv}else{
       local_clump_data1<-function(temp_dat,pop,clump_kb,clump_r2){
         temp_dat$rsid <- temp_dat$SNP
         temp_dat$id <- temp_dat$id.exposure
