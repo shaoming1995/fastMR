@@ -18,7 +18,7 @@
 #' @param Fvalue 是否计算F值，默认是TURE
 #' @param pt 是否进行绘图，默认是TURE
 #' @export
-stand_UVMR_IEU_IEU<-function(keyssh,GWASID_exp,GWASID_out,name_exposure="exposure",samplesize_exposure=100000,samplesize_outcome=100000,name_outcome="outcome",confounding_search=T,
+stand_UVMR_IEU_IEU<-function(keyssh,GWASID_exp,GWASID_out,name_exposure="exposure",samplesize_exposure=100000,samplesize_outcome=100000,name_outcome="outcome",
                                local_clump=F,confounding_SNP=NULL,clump_p1=5e-08,clump_r2=0.001,clump_kb=10000,pop="EUR",outfile="MR结果",presso=F,
                                steiger=T,Fvalue=T,pt=T){
   if (Sys.info()["nodename"] == keyssh) {
