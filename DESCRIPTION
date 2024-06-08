@@ -1,9 +1,9 @@
 Package: fastMR
-Title: 快速实现孟德尔随机化分析
+Title: What the Package Does (One Line, Title Case)
 Version: 0.24.06.5
 Authors@R: 
     person("Ming", "Shao", , "shaoming0928@example.com", role = c("aut", "cre"))
-Description: 助力孟德尔随机化分析一键化
+Description: A brief description of your package.
 License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
     license
 Encoding: UTF-8
@@ -13,5 +13,3 @@ Imports:
   dplyr
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
-Remotes: 
-shaoming1995/sofmLDSC
