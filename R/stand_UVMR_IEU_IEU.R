@@ -24,11 +24,11 @@ stand_UVMR_IEU_IEU<-function(keyssh,GWASID_exp,GWASID_out,name_exposure="exposur
                                steiger=T,Fvalue=T,pt=T){
   if (Sys.info()["nodename"] == keyssh){
   dir.create(outfile)
-  EXP<-extract_instruments(outcomes = GWASID_exp, p1 = clump_p1,clump = T,r2=clump_r2,kb=clump_kb, p2 = 5e-08,access_token = NULL)
+  EXP<-extract_instruments(outcomes = GWASID_exp, p1 = clump_p1,clump = T,r2=clump_r2,kb=clump_kb, p2 = 5e-08)
   EXP$id.exposure<-name_exposure
   EXP$exposure<-name_exposure
   EXP$samplesize_exposure<-samplesize_exposure
-  OUT<-extract_outcome_data(snps=EXP$SNP,outcomes=GWASID_out,proxies=T,maf_threshold = 0.01,access_token = NULL)
+  OUT<-extract_outcome_data(snps=EXP$SNP,outcomes=GWASID_out,proxies=T,maf_threshold = 0.01)
   OUT$id.outcome=name_outcome
   OUT$outcome=name_outcome
   OUT$samplesize.outcome=samplesize_outcome
