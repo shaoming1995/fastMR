@@ -22,7 +22,7 @@ stand_UVMR_IEU_local<-function(GWASID,outgwas,samplesize_exposure=100000,name_ex
                                  steiger=T,Fvalue=T,pt=T){
   if (Sys.info()["nodename"] == keyssh) {
   dir.create(outfile)
-  EXP<-extract_instruments(outcomes = GWASID, p1 = clump_p1,clump = T,r2=clump_r2,kb=clump_kb, p2 = 5e-08,access_token = NULL)
+  EXP<-extract_instruments(outcomes = GWASID, p1 = clump_p1,clump = T,r2=clump_r2,kb=clump_kb, p2 = 5e-08)
   EXP$id.exposure<-name_exposure
   EXP$exposure<-name_exposure
   EXP$samplesize_exposure<-samplesize_exposure
