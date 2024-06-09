@@ -9,14 +9,14 @@
 #' @param outfile 输入分析结果的文件夹
 #' @param steiger 是否进行反向过滤，默认是TURE
 #' @param Fvalue 是否计算F值，默认是TURE
-#' @param confonding_SNP 输入需要去除的混杂因素
+#' @param confounding_SNP 输入需要去除的混杂因素
 #' @param local_clump 是否启动本地聚类，默认是FALSE
 #' @param presso 是否进行MRPRESSO，默认是FALSE
 #' @param pt 是否进行绘图，默认是TURE
 #' @export
 
 stand_UVMR_local_local<-function(keyssh,expgwas,outgwas,
-                                 local_clump=F,confonding_SNP=NULL,clump_p1=5e-08,clump_r2=0.001,clump_kb=10000,pop="EUR",outfile="MR结果",presso=F,
+                                 local_clump=F,confounding_SNP=NULL,clump_p1=5e-08,clump_r2=0.001,clump_kb=10000,pop="EUR",outfile="MR结果",presso=F,
                                  steiger=T,Fvalue=T,pt=T){
   if (Sys.info()["nodename"] == keyssh) {
   dir.create(outfile)
