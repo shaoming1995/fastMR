@@ -17,7 +17,7 @@
 #' @param pt 是否进行绘图，默认是TURE
 #' @export
 
-stand_UVMR_IEU_local<-function(GWASID,outgwas,samplesize_exposure=100000,name_exposure="exposure",
+stand_UVMR_IEU_local<-function(keyssh,GWASID,outgwas,samplesize_exposure=100000,name_exposure="exposure",
                                  local_clump=F,confounding_SNP=NULL,clump_p1=5e-08,clump_r2=0.001,clump_kb=10000,pop="EUR",outfile="MR结果",presso=F,
                                  steiger=T,Fvalue=T,pt=T){
   if (Sys.info()["nodename"] == keyssh) {
@@ -144,7 +144,7 @@ stand_UVMR_IEU_local<-function(GWASID,outgwas,samplesize_exposure=100000,name_ex
       if(dim(total1)[[1]]!=0){
         #confonding_name<-c("Whole body fat mass","Arm fat mass left")
         # Atemp<- read.csv(path00,header = T,row.names = 1)  #PhenoScanSNP1(dim(total1)[[1]])
-        # Atemp0<-Atemp%>%filter(trait %in% confonding_name)
+        # Atemp0<-Atemp%>%filter(trait %in% confounding_name)
         # Atemp0<-Atemp0[!duplicated(Atemp0$snp),]
         total1<-total1%>% dplyr::filter(!SNP %in%confounding_SNP)
         #分别取出暴露与结局的数据
