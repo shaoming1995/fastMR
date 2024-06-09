@@ -150,7 +150,7 @@ stand_UVMR_local_local<-function(keyssh,expgwas,outgwas,
         # Atemp<- read.csv(path00,header = T,row.names = 1)  #PhenoScanSNP1(dim(total1)[[1]])
         # Atemp0<-Atemp%>%filter(trait %in% confounding_name)
         # Atemp0<-Atemp0[!duplicated(Atemp0$snp),]
-        total1<-total1%>% filter(!SNP %in%confonding_SNP)
+        total1<-total1%>% filter(!SNP %in%confounding_SNP)
         #分别取出暴露与结局的数据
         EXP1<-total1[,c("SNP","effect_allele.exposure","other_allele.exposure", "eaf.exposure",
                         "beta.exposure","se.exposure", "pval.exposure","id.exposure","exposure",
