@@ -140,7 +140,7 @@ stand_UVMR_local_IEU<-function(keyssh,expgwas,GWASID,samplesize_outcome=100000,n
     expiv$Fvalue<-(expiv$samplesize.exposure-2)*expiv$R2/(1-expiv$R2)
     expiv<-subset(expiv,Fvalue>10)}
   if(dim(expiv)[[1]]!=0){
-    OUT<-extract_outcome_data(snps=expiv$SNP,outcomes=GWASID,proxies=T,maf_threshold = 0.01,access_token = NULL)
+    OUT<-extract_outcome_data(snps=expiv$SNP,outcomes=GWASID,proxies=T,maf_threshold = 0.01)
     OUT$id.outcome=name_outcome
   OUT$outcome=name_outcome
   OUT$samplesize.outcome=samplesize_outcome
