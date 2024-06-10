@@ -222,8 +222,8 @@ stand_UVMR_local_local<-function(keyssh,expgwas,outgwas,
                                 Pvalue=mrpresso_data[["MR-PRESSO results"]][["Global Test"]][["Pvalue"]])
         pathpre2<-paste0(getwd(),"/",outfile,"/RSSobs.csv")
         write.csv(res_mrpresso, pathpre2, row.names = F)}
-      else{cat("当前阈值可能严格，未找到工具变量")}
-    }
+      
+    }else{cat("当前阈值可能严格，未找到工具变量")}
   }
   else{cat("当前阈值可能严格，未找到工具变量")}
   warning("此R包由作者邵明编制，请关注抖音号793742981（医小研）或者顶刊研习社公众号")
