@@ -196,6 +196,7 @@ stand_UVMR_local_IEU<-function(keyssh,expgwas,GWASID,samplesize_outcome=100000,n
           path6<-paste0(getwd(),"/",outfile,"/留一法.pdf")
           pdf(path6, width = 10, height = 10)
           mr_outcome_loo <- mr_leaveoneout(dat1)
+          write.csv(mr_outcome_loo, paste0(getwd(),"/",outfile,"/留一法.csv"))
           p3 <- mr_leaveoneout_plot(mr_outcome_loo)
           print(p3[[1]])
           dev.off()
@@ -203,6 +204,7 @@ stand_UVMR_local_IEU<-function(keyssh,expgwas,GWASID,samplesize_outcome=100000,n
           path7<-paste0(getwd(),"/",outfile,"/森林图.pdf")
           pdf(path7, width = 10, height = 10)
           mr_outcome_single <- mr_singlesnp(dat1)
+          write.csv(mr_outcome_single, paste0(getwd(),"/",outfile,"/森林图.csv"))
           p2 <- mr_forest_plot(mr_outcome_single)
           print(p2[[1]])
           dev.off()
@@ -210,6 +212,7 @@ stand_UVMR_local_IEU<-function(keyssh,expgwas,GWASID,samplesize_outcome=100000,n
           path8<-paste0(getwd(),"/",outfile,"/漏斗图.pdf")
           pdf(path8,width = 10,height = 10)
           mr_outcome_single <- mr_singlesnp(dat1)
+          write.csv(mr_outcome_single, paste0(getwd(),"/",outfile,"/漏斗图.csv"))
           p4 <- mr_funnel_plot(mr_outcome_single)
           print(p4[[1]])
           dev.off()}
