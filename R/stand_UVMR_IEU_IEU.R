@@ -184,33 +184,36 @@ stand_UVMR_IEU_IEU<-function(keyssh,GWASID_exp,GWASID_out,name_exposure="exposur
           write.csv(ple, path3, row.names = F)
           write.csv(data_h_TableS1, path4, row.names = F)
           if(pt==T){
-            #散点图
-            path5<-paste0(getwd(),"/",outfile,"/散点图.pdf")
-            pdf(path5, width = 10, height = 10)
-            p1 <- mr_scatter_plot(res[1:5,], dat1)
-            print(p1[[1]])
-            dev.off()
-            #敏感性分析Leave-one-out plot
-            path6<-paste0(getwd(),"/",outfile,"/留一法.pdf")
-            pdf(path6, width = 10, height = 10)
-            mr_outcome_loo <- mr_leaveoneout(dat1)
-            p3 <- mr_leaveoneout_plot(mr_outcome_loo)
-            print(p3[[1]])
-            dev.off()
-            #森林图
-            path7<-paste0(getwd(),"/",outfile,"/森林图.pdf")
-            pdf(path7, width = 10, height = 10)
-            mr_outcome_single <- mr_singlesnp(dat1)
-            p2 <- mr_forest_plot(mr_outcome_single)
-            print(p2[[1]])
-            dev.off()
-            #漏斗图
-            path8<-paste0(getwd(),"/",outfile,"/漏斗图.pdf")
-            pdf(path8,width = 10,height = 10)
-            mr_outcome_single <- mr_singlesnp(dat1)
-            p4 <- mr_funnel_plot(mr_outcome_single)
-            print(p4[[1]])
-            dev.off()}
+          #散点图
+          path5<-paste0(getwd(),"/",outfile,"/散点图.pdf")
+          pdf(path5, width = 10, height = 10)
+          p1 <- mr_scatter_plot(res[1:5,], dat1)
+          print(p1[[1]])
+          dev.off()
+          #敏感性分析Leave-one-out plot
+          path6<-paste0(getwd(),"/",outfile,"/留一法.pdf")
+          pdf(path6, width = 10, height = 10)
+          mr_outcome_loo <- mr_leaveoneout(dat1)
+          write.csv(mr_outcome_loo, paste0(getwd(),"/",outfile,"/留一法.csv"))
+          p3 <- mr_leaveoneout_plot(mr_outcome_loo)
+          print(p3[[1]])
+          dev.off()
+          #森林图
+          path7<-paste0(getwd(),"/",outfile,"/森林图.pdf")
+          pdf(path7, width = 10, height = 10)
+          mr_outcome_single <- mr_singlesnp(dat1)
+          write.csv(mr_outcome_single, paste0(getwd(),"/",outfile,"/森林图.csv"))
+          p2 <- mr_forest_plot(mr_outcome_single)
+          print(p2[[1]])
+          dev.off()
+          #漏斗图
+          path8<-paste0(getwd(),"/",outfile,"/漏斗图.pdf")
+          pdf(path8,width = 10,height = 10)
+          mr_outcome_single <- mr_singlesnp(dat1)
+          write.csv(mr_outcome_single, paste0(getwd(),"/",outfile,"/漏斗图.csv"))
+          p4 <- mr_funnel_plot(mr_outcome_single)
+          print(p4[[1]])
+          dev.off()}
           if(presso==T){
             mrpresso_data<-MRPRESSO::mr_presso(BetaOutcome = "beta.outcome",BetaExposure="beta.exposure",
                                                SdOutcome = "se.outcome", OUTLIERtest = T, DISTORTIONtest = T,SdExposure = "se.exposure",data=dat1)
