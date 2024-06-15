@@ -1,5 +1,6 @@
 #' @title 多变量暴露工具变量合并
-#' @description 适用于0个来自IEU的暴露，4个来自非IEU的暴露工具变量合并
+#' @param keyssh 密钥
+#' @description 适用于0个来自IEU的暴露，5个来自非IEU的暴露工具变量合并
 #' @param data1IV 来自非IEU暴露1工具变量文件
 #' @param data1GWAS 来自非IEU暴露1的GWAS summary数据文件
 #' @param data2IV 来自非IEU暴露2工具变量文件
@@ -8,9 +9,8 @@
 #' @param data3GWAS 来自非IEU暴露3的GWAS summary数据文件
 #' @param data4IV 来自非IEU暴露4工具变量文件
 #' @param data4GWAS 来自非IEU暴露4的GWAS summary数据文件
-#' @param data5IV 来自非IEU暴露4工具变量文件
-#' @param keyssh 密钥
-#' @param data5GWAS 来自非IEU暴露4的GWAS summary数据文件
+#' @param data5IV 来自非IEU暴露5工具变量文件
+#' @param data5GWAS 来自非IEU暴露5的GWAS summary数据文件
 #' @export
 IEU_0_to_local_5<-function(keyssh,data1IV,data1GWAS,data2IV,data2GWAS,data3IV,data3GWAS,data4IV,data4GWAS,data5IV,data5GWAS){
   library(tidyr)
