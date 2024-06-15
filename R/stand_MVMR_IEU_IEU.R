@@ -22,7 +22,7 @@ stand_MVMR_IEU_IEU<-function(keyssh,exp_GWASID_list=NULL,out_GWASID=NULL,clump_r
   tempid <- paste0(keyssh, "_", Sys.info()["nodename"], "_",RegistID_u$RegistID)
   if (RegistID_u$FINN %in% tempid) {
 exposure_dat <- mv_extract_exposures(id_exposure=exp_GWASID_list,clump_r2 = clump_r2,
-                                     clump_kb = clump_kb,access_token = ieugwasr::check_access_token(),
+                                     clump_kb = clump_kb,
                                      find_proxies = TRUE,force_server = FALSE, pval_threshold = pval_threshold, pop = pop)
 #获取结局数据
 outcome_dat <- extract_outcome_data(exposure_dat$SNP,
