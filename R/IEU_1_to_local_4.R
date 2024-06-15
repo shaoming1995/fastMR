@@ -27,28 +27,28 @@ IEU_1_to_local_4<-function(keyssh,data1IV,GWASID,data2IV,data2GWAS,data3IV,data3
     data_h_SNP_steiger_mv1_4<-merge(data1IV[,c("SNP","outcome")],data4GWAS,by="SNP",all=F)
     data_h_SNP_steiger_mv1_5<-merge(data1IV[,c("SNP","outcome")],data5GWAS,by="SNP",all=F)
     #去EXP1和EXP3和EXP4GWAS summary中去淘暴露2的工具变量
-    data_h_SNP_steiger_mv2_1<-extract_outcome_data(snps=data2IV$SNP,outcomes=GWASID,proxies=T,maf_threshold = 0.01,access_token = NULL)
+    data_h_SNP_steiger_mv2_1<-extract_outcome_data(snps=data2IV$SNP,outcomes=GWASID,proxies=T,maf_threshold = 0.01)
     data_h_SNP_steiger_mv2_1<-data_h_SNP_steiger_mv2_1[,out_name]
     colnames(data_h_SNP_steiger_mv2_1)<-exp_name
     data_h_SNP_steiger_mv2_3<-merge(data2IV[,c("SNP","outcome")],data3GWAS,by="SNP",all=F)
     data_h_SNP_steiger_mv2_4<-merge(data2IV[,c("SNP","outcome")],data4GWAS,by="SNP",all=F)
     data_h_SNP_steiger_mv2_5<-merge(data2IV[,c("SNP","outcome")],data5GWAS,by="SNP",all=F)
     #去EXP1和EXP2 和EXP4 GWAS summary中去淘暴露3的工具变量
-    data_h_SNP_steiger_mv3_1<-extract_outcome_data(snps=data3IV$SNP,outcomes=GWASID,proxies=T,maf_threshold = 0.01,access_token = NULL)
+    data_h_SNP_steiger_mv3_1<-extract_outcome_data(snps=data3IV$SNP,outcomes=GWASID,proxies=T,maf_threshold = 0.01)
     data_h_SNP_steiger_mv3_1<-data_h_SNP_steiger_mv3_1[,out_name]
     colnames(data_h_SNP_steiger_mv3_1)<-exp_name
     data_h_SNP_steiger_mv3_2<-merge(data3IV[,c("SNP","outcome")],data2GWAS,by="SNP",all=F)
     data_h_SNP_steiger_mv3_4<-merge(data3IV[,c("SNP","outcome")],data4GWAS,by="SNP",all=F)
     data_h_SNP_steiger_mv3_5<-merge(data3IV[,c("SNP","outcome")],data5GWAS,by="SNP",all=F)
     #去EXP1和EXP2 和EXP3 GWAS summary中去淘暴露3的工具变量
-    data_h_SNP_steiger_mv4_1<-extract_outcome_data(snps=data4IV$SNP,outcomes=GWASID,proxies=T,maf_threshold = 0.01,access_token = NULL)
+    data_h_SNP_steiger_mv4_1<-extract_outcome_data(snps=data4IV$SNP,outcomes=GWASID,proxies=T,maf_threshold = 0.01)
     data_h_SNP_steiger_mv4_1<-data_h_SNP_steiger_mv4_1[,out_name]
     colnames(data_h_SNP_steiger_mv4_1)<-exp_name
     data_h_SNP_steiger_mv4_2<-merge(data4IV[,c("SNP","outcome")],data2GWAS,by="SNP",all=F)
     data_h_SNP_steiger_mv4_3<-merge(data4IV[,c("SNP","outcome")],data3GWAS,by="SNP",all=F)
     data_h_SNP_steiger_mv4_5<-merge(data4IV[,c("SNP","outcome")],data5GWAS,by="SNP",all=F)
 
-    data_h_SNP_steiger_mv5_1<-extract_outcome_data(snps=data5IV$SNP,outcomes=GWASID,proxies=T,maf_threshold = 0.01,access_token = NULL)
+    data_h_SNP_steiger_mv5_1<-extract_outcome_data(snps=data5IV$SNP,outcomes=GWASID,proxies=T,maf_threshold = 0.01)
     data_h_SNP_steiger_mv5_1<-data_h_SNP_steiger_mv5_1[,out_name]
     colnames(data_h_SNP_steiger_mv5_1)<-exp_name
     data_h_SNP_steiger_mv5_2<-merge(data5IV[,c("SNP","outcome")],data2GWAS,by="SNP",all=F)
