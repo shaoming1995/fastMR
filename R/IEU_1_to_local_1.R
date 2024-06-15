@@ -18,7 +18,7 @@ IEU_1_to_local_1<-function(keyssh,data1IV,GWASID,data2IV,data2GWAS){
   out_name<-c("SNP","effect_allele.outcome","other_allele.outcome", "eaf.outcome", "beta.outcome","se.outcome","pval.outcome","id.outcome","outcome")
   #去EXP2中淘EXP1 IV
   #去EXP1GWAS summary中去淘暴露2的工具变量
-  data_h_SNP_steiger_mv2_1<-extract_outcome_data(snps=data2IV$SNP,outcomes=GWASID,proxies=T,maf_threshold = 0.01,access_token = NULL)
+  data_h_SNP_steiger_mv2_1<-extract_outcome_data(snps=data2IV$SNP,outcomes=GWASID,proxies=T,maf_threshold = 0.01)
   data_h_SNP_steiger_mv2_1<-data_h_SNP_steiger_mv2_1[,out_name]
   colnames(data_h_SNP_steiger_mv2_1)<-exp_name
 
