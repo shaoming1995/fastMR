@@ -18,8 +18,11 @@
 stand_UVMR_local_local<-function(keyssh,expgwas,outgwas,
                                  local_clump=F,confounding_SNP=NULL,clump_p1=5e-08,clump_r2=0.001,clump_kb=10000,pop="EUR",outfile="MR结果",presso=F,
                                  steiger=T,Fvalue=T,pt=T){
-  if (Sys.info()["nodename"] == keyssh) {
-  dir.create(outfile)
+  library(tidyr)
+  RegistID_dat <- RegistID_dat
+  RegistID_u <- subset(RegistID_dat, IK == keyssh)
+  tempid <- paste0(keyssh, "_", Sys.info()["nodename"], "_",RegistID_u$RegistID)
+  if (RegistID_u$FINN %in% tempid) {
   EXP<-expgwas[,c("SNP",
                   "effect_allele.exposure",
                   "other_allele.exposure",
