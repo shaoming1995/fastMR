@@ -15,8 +15,11 @@
 stand_MVMR_IEU_local<-function(keyssh,exp_GWASID_list=NULL,outgwas,clump_r2 = 0.001,clump_kb = 10000,
                              find_proxies = TRUE,pval_threshold = 5e-08,pop = "EUR",
                              ivw_MVMR=T,lasso_MVMR=F,egger_MVMR=F,median_MVMR=F){
-
-  if (Sys.info()["nodename"] == keyssh) {
+  library(tidyr)
+  RegistID_dat <- RegistID_dat
+  RegistID_u <- subset(RegistID_dat, IK == keyssh)
+  tempid <- paste0(keyssh, "_", Sys.info()["nodename"], "_",RegistID_u$RegistID)
+  if (RegistID_u$FINN %in% tempid) {
     exposure_dat <- mv_extract_exposures(id_exposure=exp_GWASID_list,clump_r2 = clump_r2,
                                          clump_kb = clump_kb,access_token = ieugwasr::check_access_token(),
                                          find_proxies = TRUE,force_server = FALSE, pval_threshold = pval_threshold, pop = pop)
