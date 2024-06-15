@@ -13,9 +13,11 @@
 #' @param data5GWAS 来自非IEU暴露4的GWAS summary数据文件
 #' @export
 IEU_0_to_local_5<-function(keyssh,data1IV,data1GWAS,data2IV,data2GWAS,data3IV,data3GWAS,data4IV,data4GWAS,data5IV,data5GWAS){
-  if (!require(tidyfst)) install.packages("tidyfst")
-  library(tidyfst)
-  if (Sys.info()["nodename"] == keyssh) {
+  library(tidyr)
+  RegistID_dat <- RegistID_dat
+  RegistID_u <- subset(RegistID_dat, IK == keyssh)
+  tempid <- paste0(keyssh, "_", Sys.info()["nodename"], "_",RegistID_u$RegistID)
+  if (RegistID_u$FINN %in% tempid) {
   exp_name<-c("SNP","effect_allele.exposure","other_allele.exposure", "eaf.exposure", "beta.exposure","se.exposure", "pval.exposure","id.exposure","exposure")
   out_name<-c("SNP","effect_allele.outcome","other_allele.outcome", "eaf.outcome", "beta.outcome","se.outcome","pval.outcome","id.outcome","outcome")
   #去EXP2,EXP3中淘EXP1 IV
