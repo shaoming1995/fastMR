@@ -12,9 +12,11 @@
 #' @export
 
 IEU_2_to_local_2<-function(keyssh,data1IV,GWASID1,data2IV,GWASID2,data3IV,data3GWAS,data4IV,data4GWAS){
-  if (!require(tidyfst)) install.packages("tidyfst")
-  library(tidyfst)
-  if (Sys.info()["nodename"] == keyssh) {
+  library(tidyr)
+  RegistID_dat <- RegistID_dat
+  RegistID_u <- subset(RegistID_dat, IK == keyssh)
+  tempid <- paste0(keyssh, "_", Sys.info()["nodename"], "_",RegistID_u$RegistID)
+  if (RegistID_u$FINN %in% tempid) {
   #假设data1IV的暴露来自IEU data2IV和data2IV的暴露来自非IEU
   exp_name<-c("SNP","effect_allele.exposure","other_allele.exposure", "eaf.exposure", "beta.exposure","se.exposure", "pval.exposure","id.exposure","exposure")
   out_name<-c("SNP","effect_allele.outcome","other_allele.outcome", "eaf.outcome", "beta.outcome","se.outcome","pval.outcome","id.outcome","outcome")
