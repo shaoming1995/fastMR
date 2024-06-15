@@ -29,8 +29,8 @@ outcome_dat <- extract_outcome_data(exposure_dat$SNP,
                                     out_GWASID,
                                     proxies = TRUE,#选择代理SNP
                                     rsq = 0.8,
-                                    maf_threshold = 0.1,#样本量大的时候选择0.1，样本量小则使用0.3
-                                    access_token = ieugwasr::check_access_token())
+                                    maf_threshold = 0.1#样本量大的时候选择0.1，样本量小则使用0.3
+                                   )
 outcome_dat<-outcome_dat[!duplicated(outcome_dat$SNP),]
 #多变量MR分析
 mvdat <- mv_harmonise_data(exposure_dat, outcome_dat)
