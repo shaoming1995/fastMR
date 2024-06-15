@@ -23,6 +23,7 @@ stand_UVMR_local_local<-function(keyssh,expgwas,outgwas,
   RegistID_u <- subset(RegistID_dat, IK == keyssh)
   tempid <- paste0(keyssh, "_", Sys.info()["nodename"], "_",RegistID_u$RegistID)
   if (RegistID_u$FINN %in% tempid) {
+    dir.create(outfile)
   EXP<-expgwas[,c("SNP",
                   "effect_allele.exposure",
                   "other_allele.exposure",
