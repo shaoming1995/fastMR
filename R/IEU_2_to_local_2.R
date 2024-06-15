@@ -21,30 +21,30 @@ IEU_2_to_local_2<-function(keyssh,data1IV,GWASID1,data2IV,GWASID2,data3IV,data3G
   exp_name<-c("SNP","effect_allele.exposure","other_allele.exposure", "eaf.exposure", "beta.exposure","se.exposure", "pval.exposure","id.exposure","exposure")
   out_name<-c("SNP","effect_allele.outcome","other_allele.outcome", "eaf.outcome", "beta.outcome","se.outcome","pval.outcome","id.outcome","outcome")
   #去EXP2和EXP3和EXP4GWAS summary中去淘暴露1的工具变量
-  data_h_SNP_steiger_mv1_2<-extract_outcome_data(snps=data1IV$SNP,outcomes=GWASID2,proxies=T,maf_threshold = 0.01,access_token = NULL)
+  data_h_SNP_steiger_mv1_2<-extract_outcome_data(snps=data1IV$SNP,outcomes=GWASID2,proxies=T,maf_threshold = 0.01)
   data_h_SNP_steiger_mv1_2<-data_h_SNP_steiger_mv1_2[,out_name]
   colnames(data_h_SNP_steiger_mv1_2)<-exp_name
   data_h_SNP_steiger_mv1_3<-merge(data1IV[,c("SNP","outcome")],data3GWAS,by="SNP",all=F)
   data_h_SNP_steiger_mv1_4<-merge(data1IV[,c("SNP","outcome")],data4GWAS,by="SNP",all=F)
   #去EXP1和EXP3和EXP4GWAS summary中去淘暴露2的工具变量
-  data_h_SNP_steiger_mv2_1<-extract_outcome_data(snps=data2IV$SNP,outcomes=GWASID1,proxies=T,maf_threshold = 0.01,access_token = NULL)
+  data_h_SNP_steiger_mv2_1<-extract_outcome_data(snps=data2IV$SNP,outcomes=GWASID1,proxies=T,maf_threshold = 0.01)
   data_h_SNP_steiger_mv2_1<-data_h_SNP_steiger_mv2_1[,out_name]
   colnames(data_h_SNP_steiger_mv2_1)<-exp_name
   data_h_SNP_steiger_mv2_3<-merge(data2IV[,c("SNP","outcome")],data3GWAS,by="SNP",all=F)
   data_h_SNP_steiger_mv2_4<-merge(data2IV[,c("SNP","outcome")],data4GWAS,by="SNP",all=F)
   #去EXP1和EXP2和EXP4GWAS summary中去淘暴露3的工具变量
-  data_h_SNP_steiger_mv3_1<-extract_outcome_data(snps=data3IV$SNP,outcomes=GWASID1,proxies=T,maf_threshold = 0.01,access_token = NULL)
+  data_h_SNP_steiger_mv3_1<-extract_outcome_data(snps=data3IV$SNP,outcomes=GWASID1,proxies=T,maf_threshold = 0.01)
   data_h_SNP_steiger_mv3_1<-data_h_SNP_steiger_mv3_1[,out_name]
   colnames(data_h_SNP_steiger_mv3_1)<-exp_name
-  data_h_SNP_steiger_mv3_2<-extract_outcome_data(snps=data3IV$SNP,outcomes=GWASID2,proxies=T,maf_threshold = 0.01,access_token = NULL)
+  data_h_SNP_steiger_mv3_2<-extract_outcome_data(snps=data3IV$SNP,outcomes=GWASID2,proxies=T,maf_threshold = 0.01)
   data_h_SNP_steiger_mv3_2<-data_h_SNP_steiger_mv3_2[,out_name]
   colnames(data_h_SNP_steiger_mv3_2)<-exp_name
   data_h_SNP_steiger_mv3_4<-merge(data3IV[,c("SNP","outcome")],data4GWAS,by="SNP",all=F)
   #去EXP1和EXP2和EXP3GWAS summary中去淘暴露4的工具变量
-  data_h_SNP_steiger_mv4_1<-extract_outcome_data(snps=data4IV$SNP,outcomes=GWASID1,proxies=T,maf_threshold = 0.01,access_token = NULL)
+  data_h_SNP_steiger_mv4_1<-extract_outcome_data(snps=data4IV$SNP,outcomes=GWASID1,proxies=T,maf_threshold = 0.01)
   data_h_SNP_steiger_mv4_1<-data_h_SNP_steiger_mv4_1[,out_name]
   colnames(data_h_SNP_steiger_mv4_1)<-exp_name
-  data_h_SNP_steiger_mv4_2<-extract_outcome_data(snps=data4IV$SNP,outcomes=GWASID2,proxies=T,maf_threshold = 0.01,access_token = NULL)
+  data_h_SNP_steiger_mv4_2<-extract_outcome_data(snps=data4IV$SNP,outcomes=GWASID2,proxies=T,maf_threshold = 0.01)
   data_h_SNP_steiger_mv4_2<-data_h_SNP_steiger_mv4_2[,out_name]
   colnames(data_h_SNP_steiger_mv4_2)<-exp_name
   data_h_SNP_steiger_mv4_3<-merge(data4IV[,c("SNP","outcome")],data3GWAS,by="SNP",all=F)
