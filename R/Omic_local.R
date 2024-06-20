@@ -157,7 +157,7 @@ Omic_local<-function(keyssh,fac_cell_met_gut=1,savefile="MR结果",omicfile,fini
           }
           expiv<- local_clump_data1(expiv,clump_kb = clump_kb,clump_r2 = clump_r2,pop = pop)
         }
-if(expiv$eaf.exposure[1]!="logical"){
+if(class(expiv$eaf.exposure[1])!="logical"){
         expiv$R2<-expiv$beta.exposure*expiv$beta.exposure*2*(expiv$eaf.exposure)*(1-expiv$eaf.exposure)
         expiv$Fvalue<-(expiv$samplesize.exposure-2)*expiv$R2/(1-expiv$R2)
         expiv<-subset(expiv,Fvalue>10)}else{
