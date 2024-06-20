@@ -157,9 +157,14 @@ Omic_local<-function(keyssh,fac_cell_met_gut=1,savefile="MR结果",omicfile,fini
           }
           expiv<- local_clump_data1(expiv,clump_kb = clump_kb,clump_r2 = clump_r2,pop = pop)
         }
+if(expiv$eaf.exposure[1]=="logical"){
         expiv$R2<-expiv$beta.exposure*expiv$beta.exposure*2*(expiv$eaf.exposure)*(1-expiv$eaf.exposure)
         expiv$Fvalue<-(expiv$samplesize.exposure-2)*expiv$R2/(1-expiv$R2)
-        expiv<-subset(expiv,Fvalue>10)
+        expiv<-subset(expiv,Fvalue>10)}else{
+          expiv$R2<-NA
+          expiv$Fvalue<-(expiv$beta.exposure/expiv$se.exposure)*(expiv$beta.exposure/expiv$se.exposure)
+          expiv<-subset(expiv,Fvalue>10)
+        }
       if(dim(expiv)[[1]]!=0){
         #在结局GWAS summary中寻找与暴露对应的SNPs
         total1<-merge(finish_out,expiv,by.x="SNP",by.y="SNP",all = F)
