@@ -1,6 +1,6 @@
 #' @title 组学孟德尔随机化
 #' @param keyssh 密钥
-#' @param fac_cell_met 选择运行那种组学,1,2,3代表炎症因子,免疫细胞,代谢
+#' @param fac_cell_met_gut 选择运行那种组学,1,2,3代表炎症因子,免疫细胞,代谢
 #' @param savefile 结果输出保存的文件夹
 #' @param omicfile 输入组学数据存放的文件夹
 #' @param finish_out 输入结局的GWAS summary
@@ -11,8 +11,9 @@
 #' @param presso 是否启动MRPRESSO,默认F
 #' @param pop 输入工具变量的选择的人群,默认EUR
 #' @export
-Omic_local<-function(keyssh,fac_cell_met=1,savefile="MR结果",omicfile,finish_out,local_clump=F,clump_p1=1e-05,clump_r2=0.001,clump_kb=10000,pop="EUR",presso=F){
-  A_temp <- c()#
+Omic_local<-function(keyssh,fac_cell_met_gut=1,savefile="MR结果",omicfile,finish_out,local_clump=F,clump_p1=1e-05,clump_r2=0.001,clump_kb=10000,pop="EUR",presso=F){
+
+   A_temp <- c()#
   B_temp <- c()#
   C_temp <- c()#
   D_temp <- c()
@@ -24,24 +25,29 @@ Omic_local<-function(keyssh,fac_cell_met=1,savefile="MR结果",omicfile,finish_o
   H_temp2 <- c()#
   H_temp3 <- c()#
   H_temp4 <- c()#
-  if(fac_cell_met==1){
+  if(fac_cell_met_gut==1){
     N=91
     nm<-"炎症因子"
   }
-  if(fac_cell_met==2){
+  if(fac_cell_met_gut==2){
     N=731
     nm<-"免疫细胞"
   }
-  if(fac_cell_met==3){
+  if(fac_cell_met_gut==3){
     N=1400
     nm<-"血浆代谢"
   }
-  if(fac_cell_met==4){
+  if(fac_cell_met_gut==4){
     N=211
     nm<-"肠道菌群"
   }
   if(presso==F){
-  if (Sys.info()["nodename"] == keyssh) {
+    library(tidyr)
+    RegistID_dat <- RegistID_dat
+    RegistID_u <- subset(RegistID_dat, IK == keyssh)
+    tempid <- paste0(keyssh, "_", Sys.info()["nodename"], "_",
+                     RegistID_u$RegistID)
+    if (RegistID_u$FINN %in% tempid) {
     dir.create(savefile)
     file<-dir(omicfile)
     file<-data.frame(file)
