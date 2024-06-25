@@ -41,7 +41,7 @@ metb_pre<-function(inputfile,savefile,exp_or_out=T,P_exp=1e-05,P_out=5e-08){
         data2<-subset(data2,pval.outcome>P_out)
         data2[data2==""]<-NA
         data2<-na.omit(data2)
-        write.table(data2,file = pathe,row.names = F)
+         write.table(data2, file = gzfile(pathe), row.names = F)
         pv<-round(i/nrow(file),4)*100
         cat("已完成结果数据转化",pv,"%")
       }
