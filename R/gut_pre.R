@@ -49,7 +49,7 @@ gut_pre<-function (keyssh,inputfile, savefile, exp_or_out = T, P_exp = 1e-05,
 
         pathe <- paste0(savefile, "/", file[i, 1])
         data2 <- subset(data2, pval.outcome > P_out)
-        write.table(data2, file = pathe, row.names = F)
+        write.table(data2, file = gzfile(pathe), row.names = F)
         pv <- round(i/nrow(file), 4) * 100
         cat("已完成结果数据转化", pv, "%")
       }
