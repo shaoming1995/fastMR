@@ -149,9 +149,9 @@ if (RegistID_u$FINN %in% tempid) {
     temp_dat$pval <- NULL
     return(temp_dat)
   }
-  expiv0<-subset(finish_exp,pval.exposure<clump_p1)
-  expiv0[expiv0==""]<-NA
-  expiv0<-na.omit(expiv0)
+expiv0<-subset(GUT1,pval.exposure<clump_p1)
+expiv0[expiv0==""]<-NA
+expiv0<-expiv0%>%filter(!SNP%in%NA)
   expiv0<-expiv0%>%tidyr::separate(col =SNP, into = c("SNP", "SNP1", "SNP2","SNP3"),sep = ",")
   ask_user1 <- function() {
     answer <- readline(prompt=message("你当前暴露的工具变量满足小于",clump_p1,"有",dim(expiv0)[[1]],"个是否继续运行聚类?"))
