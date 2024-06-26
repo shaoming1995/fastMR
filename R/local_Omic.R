@@ -149,7 +149,7 @@ if (RegistID_u$FINN %in% tempid) {
     temp_dat$pval <- NULL
     return(temp_dat)
   }
-expiv0<-subset(GUT1,pval.exposure<clump_p1)
+expiv0<-subset(finish_exp,pval.exposure<clump_p1)
 expiv0[expiv0==""]<-NA
 expiv0<-expiv0%>%filter(!SNP%in%NA)
   expiv0<-expiv0%>%tidyr::separate(col =SNP, into = c("SNP", "SNP1", "SNP2","SNP3"),sep = ",")
