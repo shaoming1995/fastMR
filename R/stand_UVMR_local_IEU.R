@@ -140,9 +140,14 @@ stand_UVMR_local_IEU<-function(keyssh,expgwas,GWASID,samplesize_outcome=100000,n
       expiv<- local_clump_data1(expiv,clump_kb = clump_kb,clump_r2 = clump_r2,pop = pop)
     }
   if(Fvalue==T){
-    expiv$R2<-expiv$beta.exposure*expiv$beta.exposure*2*(expiv$eaf.exposure)*(1-expiv$eaf.exposure)
-    expiv$Fvalue<-(expiv$samplesize.exposure-2)*expiv$R2/(1-expiv$R2)
-    expiv<-subset(expiv,Fvalue>10)}
+   if(class(expiv$eaf.exposure[1])!="logical"){
+        expiv$R2<-expiv$beta.exposure*expiv$beta.exposure*2*(expiv$eaf.exposure)*(1-expiv$eaf.exposure)
+        expiv$Fvalue<-(expiv$samplesize.exposure-2)*expiv$R2/(1-expiv$R2)
+        expiv<-subset(expiv,Fvalue>10)}else{
+          expiv$R2<-NA
+          expiv$Fvalue<-(expiv$beta.exposure/expiv$se.exposure)*(expiv$beta.exposure/expiv$se.exposure)
+          expiv<-subset(expiv,Fvalue>10)
+        }}
   if(dim(expiv)[[1]]!=0){
     OUT<-extract_outcome_data(snps=expiv$SNP,outcomes=GWASID,proxies=T,maf_threshold = 0.01)
     OUT$id.outcome=name_outcome
