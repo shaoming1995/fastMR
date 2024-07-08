@@ -1,6 +1,6 @@
 Package: fastMR
 Title: What the Package Does (One Line, Title Case)
-Version: 0.24.07.01
+Version: 0.24.07.09
 Authors@R: 
     person("Ming", "Shao", , "shaoming0928@example.com", role = c("aut", "cre"))
 Description: A brief description of your package.
