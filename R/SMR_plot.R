@@ -428,7 +428,7 @@ SMRLocusPlot = function(data=SMRData, probeNEARBY=NULL,smr_thresh=NULL, smr_thre
     probeINFO=probeINFO[c(1:max_anno_probe),]
     nprobeINFO=dim(probeINFO)[1];
   }
-  if(anno_selfdef) probeINFO=probeINFO[order(probeINFO[2],probeINFO[3]),] ####20170217
+  #if(anno_selfdef) probeINFO=probeINFO[order(probeINFO[2],probeINFO[3]),] ####20170217
   xcenter = as.numeric(probeINFO[,3])
   xcbuf = xcenter
   ####20170217####
