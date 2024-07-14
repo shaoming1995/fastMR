@@ -17,14 +17,14 @@ SMR_qtl_GWAS<-function(keyssh,pop="EUR",maGWASfile,eqtlfile,single=T,kb=500,r2=0
   if (RegistID_u$FINN %in% tempid) {
     if(Sys.info()["sysname"] == "Windows"){
       if(single==T){
-        shell<-paste0(getwd(),"/SMR/smr_Win/","smr-1.3.1-win.exe --bfile ",getwd(),"/1kg.v3/",pop," --gwas-summary ",maGWASfile," --beqtl-summary ",eqtlfile," --out ",outfile," --thread-num ",num)
+        shell<-paste0(getwd(),"/SMR/smr_Win/","smr-1.3.1-win.exe --bfile ",getwd(),"/1kg.v3/",pop," --gwas-summary ",maGWASfile," --beqtl-summary ",eqtlfile," --out ",outfile," --thread-num ",num," --diff-freq-p 0.99")
         system(shell)}else{
-          shell<-paste0(getwd(),"/SMR/smr_Win/","smr-1.3.1-win.exe --bfile ",getwd(),"/1kg.v3/",pop," --gwas-summary ",maGWASfile," --beqtl-summary ",eqtlfile," --out ",outfile," --smr-multi"," --set-wind ",kb," --ld-multi-snp ",r2," --thread-num ",num)
+          shell<-paste0(getwd(),"/SMR/smr_Win/","smr-1.3.1-win.exe --bfile ",getwd(),"/1kg.v3/",pop," --gwas-summary ",maGWASfile," --beqtl-summary ",eqtlfile," --out ",outfile," --smr-multi"," --set-wind ",kb," --ld-multi-snp ",r2," --thread-num ",num," --diff-freq-p 0.99")
           system(shell)}}else{
             if(single==T){
-              shell<-paste0(getwd(),"/SMR/smr_Mac/","smr-1.3.1-macos-arm64 --bfile ",getwd(),"/1kg.v3/",pop," --gwas-summary ",maGWASfile," --beqtl-summary ",eqtlfile," --out ",outfile," --thread-num ",num)
+              shell<-paste0(getwd(),"/SMR/smr_Mac/","smr-1.3.1-macos-arm64 --bfile ",getwd(),"/1kg.v3/",pop," --gwas-summary ",maGWASfile," --beqtl-summary ",eqtlfile," --out ",outfile," --thread-num ",num," --diff-freq-p 0.99")
               system(shell)}else{
-                shell<-paste0(getwd(),"/SMR/smr_Mac/","smr-1.3.1-macos-arm64 --bfile ",getwd(),"/1kg.v3/",pop," --gwas-summary ",maGWASfile," --beqtl-summary ",eqtlfile," --out ",outfile," --smr-multi"," --set-wind ",kb," --ld-multi-snp ",r2," --thread-num ",num)
+                shell<-paste0(getwd(),"/SMR/smr_Mac/","smr-1.3.1-macos-arm64 --bfile ",getwd(),"/1kg.v3/",pop," --gwas-summary ",maGWASfile," --beqtl-summary ",eqtlfile," --out ",outfile," --smr-multi"," --set-wind ",kb," --ld-multi-snp ",r2," --thread-num ",num," --diff-freq-p 0.99")
                 system(shell)}}}else {
                   warning("keyssh不正确,请联系管理员微信SFM19950928或DKYXS666获取密钥")}
 }
