@@ -27,10 +27,10 @@ SMR_plot<-function(keyssh,pop="EUR",maGWASfile,eqtlfile,ILMN_outfile,ILMN_ID,smr
                    RegistID_u$RegistID)
   if (RegistID_u$FINN %in% tempid) {
     if(Sys.info()["sysname"] == "Windows"){
-      shell1<-paste0(getwd(),"/SMR/smr_Win/","smr-1.3.1-win.exe --bfile ",getwd(),"/1kg.v3/",pop," --gwas-summary ",maGWASfile," --beqtl-summary ",eqtlfile," --out ",ILMN_outfile," --plot --probe ",ILMN_ID," --probe-wind 500 ","--gene-list ",getwd(),"/SMR/glist-hg19"," --thread-num ",num)
+      shell1<-paste0(getwd(),"/SMR/smr_Win/","smr-1.3.1-win.exe --bfile ",getwd(),"/1kg.v3/",pop," --gwas-summary ",maGWASfile," --beqtl-summary ",eqtlfile," --out ",ILMN_outfile," --plot --probe ",ILMN_ID," --probe-wind 500 ","--gene-list ",getwd(),"/SMR/glist-hg19"," --thread-num ",num," --diff-freq-p 0.99")
       system(shell1)}
     else{
-      shell1<-paste0(getwd(),"/SMR/smr_Mac/","smr-1.3.1-macos-arm64 --bfile ",getwd(),"/1kg.v3/",pop," --gwas-summary ",maGWASfile," --beqtl-summary ",eqtlfile," --out ",ILMN_outfile," --plot --probe ",ILMN_ID," --probe-wind 500 ","--gene-list ",getwd(),"/SMR/glist-hg19"," --thread-num ",num)
+      shell1<-paste0(getwd(),"/SMR/smr_Mac/","smr-1.3.1-macos-arm64 --bfile ",getwd(),"/1kg.v3/",pop," --gwas-summary ",maGWASfile," --beqtl-summary ",eqtlfile," --out ",ILMN_outfile," --plot --probe ",ILMN_ID," --probe-wind 500 ","--gene-list ",getwd(),"/SMR/glist-hg19"," --thread-num ",num," --diff-freq-p 0.99")
       system(shell1)}
     shell<-paste0(getwd(),"/plot/",ILMN_outfile,".",ILMN_ID,".txt")
     SMRData = ReadSMRData(shell)
