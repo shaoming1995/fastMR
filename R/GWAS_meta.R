@@ -11,7 +11,13 @@
 #' @param Nsample 输入合计的样本量
 #' @param triat 输入表型的名称
 #' @export
+
 GWAS_meta<-function(data1,data2,snp_col="SNP",beta_col="BETA",se_col="SE",a1_col="effect_allele",a2_col="other_allele",filename1="芬兰肺癌GWAS",filename2="catlog肺癌GWAS",Nsample=1000000,triat="Lung cancer"){
+  RegistID_dat <- RegistID_dat
+  RegistID_u <- subset(RegistID_dat, IK == keyssh)
+  tempid <- paste0(keyssh, "_", Sys.info()["nodename"], "_",
+                   RegistID_u$RegistID)
+  if (RegistID_u$FINN %in% tempid) {
   if (!requireNamespace("progress", quietly = TRUE))
     install.packages("progress")
   library(tidyr)
@@ -94,4 +100,7 @@ GWAS_meta<-function(data1,data2,snp_col="SNP",beta_col="BETA",se_col="SE",a1_col
   dir.create("最终GWAS荟萃文件")
   write.table(ET_finn2,"最终GWAS荟萃文件/肺癌GWAS_META.txt",quote=F,row.names=F)
   message("结果已经输出在最终GWAS荟萃文件中")
+    }else {
+    warning("keyssh不正确,请联系管理员微信SFM19950928或DKYXS666获取密钥")
+  }
 }
