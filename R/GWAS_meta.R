@@ -13,7 +13,7 @@
 #' @param triat 输入表型的名称
 #' @export
 
-GWAS_meta<-function(keyssh,data1,data2,snp_col="SNP",beta_col="BETA",se_col="SE",a1_col="effect_allele",a2_col="other_allele",filename1="芬兰肺癌GWAS",filename2="catlog肺癌GWAS",Nsample=1000000,triat="Lung cancer"){
+GWAS_meta<-function(keyssh,data1,data2,snp_col="SNP",beta_col="BETA",se_col="SE",a1_col="effect_allele",a2_col="other_allele",filename1="芬兰肺癌GWAS",filename2="catlog肺癌GWAS",Nsample=1000000,triat="trait_name"){
   RegistID_dat <- RegistID_dat
   RegistID_u <- subset(RegistID_dat, IK == keyssh)
   tempid <- paste0(keyssh, "_", Sys.info()["nodename"], "_",
@@ -101,8 +101,8 @@ GWAS_meta<-function(keyssh,data1,data2,snp_col="SNP",beta_col="BETA",se_col="SE"
   ET_finn2$id.fin<-triat
   dir.create("最终GWAS荟萃文件")
   write.table(ET_finn2,"最终GWAS荟萃文件/肺癌GWAS_META.txt",quote=F,row.names=F)
-  message("结果已经输出在最终GWAS荟萃文件中")
-    }else {
+  message("结果已经输出在最终GWAS荟萃文件中")}
+  else {
     warning("keyssh不正确,请联系管理员微信SFM19950928或DKYXS666获取密钥")
   }
 }
