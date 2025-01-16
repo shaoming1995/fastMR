@@ -40,6 +40,8 @@ GWAS_meta(
 \item{Nsample}{输入合计的样本量}
 
 \item{triat}{输入表型的名称}
+
+\item{keyssh}{学号}
 }
 \description{
 用于两表型的GWAS荟萃分析
