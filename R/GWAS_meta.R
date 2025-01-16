@@ -1,4 +1,5 @@
 #' @title 用于两表型的GWAS荟萃分析
+#' @param keyssh 学号
 #' @param data1 输入标准MR格式的暴露列名文件，额外包含必要的两列，chr.exposure,pos.exposure
 #' @param data2 输入第二个表型的GWAS文件，需要包含必要的三列，SNP,BETA,SE
 #' @param snp_col 输入SNP列名
@@ -12,7 +13,7 @@
 #' @param triat 输入表型的名称
 #' @export
 
-GWAS_meta<-function(data1,data2,snp_col="SNP",beta_col="BETA",se_col="SE",a1_col="effect_allele",a2_col="other_allele",filename1="芬兰肺癌GWAS",filename2="catlog肺癌GWAS",Nsample=1000000,triat="Lung cancer"){
+GWAS_meta<-function(keyssh,data1,data2,snp_col="SNP",beta_col="BETA",se_col="SE",a1_col="effect_allele",a2_col="other_allele",filename1="芬兰肺癌GWAS",filename2="catlog肺癌GWAS",Nsample=1000000,triat="Lung cancer"){
   RegistID_dat <- RegistID_dat
   RegistID_u <- subset(RegistID_dat, IK == keyssh)
   tempid <- paste0(keyssh, "_", Sys.info()["nodename"], "_",
@@ -44,6 +45,7 @@ GWAS_meta<-function(data1,data2,snp_col="SNP",beta_col="BETA",se_col="SE",a1_col
     dir.create(filename1)
     write.table(d_chr,paste0(getwd(),"/",filename1,"/芬兰肺癌GWAS",i,".txt"),quote=F,row.names=F)
     pb$tick()
+    
   }
 
   message("数据集1已经切割完成，准备切割数据集2...")
