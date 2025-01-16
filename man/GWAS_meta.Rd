@@ -5,6 +5,7 @@
 \title{用于两表型的GWAS荟萃分析}
 \usage{
 GWAS_meta(
+  keyssh,
   data1,
   data2,
   snp_col = "SNP",
@@ -19,6 +20,8 @@ GWAS_meta(
 )
 }
 \arguments{
+\item{keyssh}{学号}
+
 \item{data1}{输入标准MR格式的暴露列名文件，额外包含必要的两列，chr.exposure,pos.exposure}
 
 \item{data2}{输入第二个表型的GWAS文件，需要包含必要的三列，SNP,BETA,SE}
@@ -40,8 +43,6 @@ GWAS_meta(
 \item{Nsample}{输入合计的样本量}
 
 \item{triat}{输入表型的名称}
-
-\item{keyssh}{学号}
 }
 \description{
 用于两表型的GWAS荟萃分析
