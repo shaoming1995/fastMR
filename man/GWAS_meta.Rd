@@ -10,6 +10,8 @@ GWAS_meta(
   snp_col = "SNP",
   beta_col = "BETA",
   se_col = "SE",
+  a1_col = "effect_allele",
+  a2_col = "other_allele",
   filename1 = "芬兰肺癌GWAS",
   filename2 = "catlog肺癌GWAS",
   Nsample = 1e+06,
@@ -26,6 +28,10 @@ GWAS_meta(
 \item{beta_col}{表型2的效应值列名}
 
 \item{se_col}{表型2的效应值标准误列名}
+
+\item{a1_col}{表型2的效应等位基因列名}
+
+\item{a2_col}{表型2的参考等位基因列名}
 
 \item{filename1}{输入临时储存文件夹1}
 
