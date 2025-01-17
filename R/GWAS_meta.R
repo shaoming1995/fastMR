@@ -100,7 +100,7 @@ GWAS_meta<-function(keyssh,data1,data2,snp_col="SNP",beta_col="BETA",se_col="SE"
   ET_finn2$N.fin<-Nsample
   ET_finn2$id.fin<-triat
   dir.create("最终GWAS荟萃文件")
-  write.table(ET_finn2,"最终GWAS荟萃文件/肺癌GWAS_META.txt",quote=F,row.names=F)
+  write.table(ET_finn2,"最终GWAS荟萃文件/GWAS_META.txt",quote=F,row.names=F)
   message("结果已经输出在最终GWAS荟萃文件中")}
   else {
     warning("keyssh不正确,请联系管理员微信SFM19950928或DKYXS666获取密钥")
