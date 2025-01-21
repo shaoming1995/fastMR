@@ -5,7 +5,7 @@
 #' @param p.threshold 过滤P值，默认5e-08
 #' @param save_file 输出保存的文件
 #' @export
-PLACO_triat<-function(exp_gwas,out_gwas,p.threshold=5e-08,save_file="PLACO"){
+PLACO_triat<-function(keyssh,exp_gwas,out_gwas,p.threshold=5e-08,save_file="PLACO"){
   RegistID_dat <- RegistID_dat
   RegistID_u <- subset(RegistID_dat, IK == keyssh)
   tempid <- paste0(keyssh, "_", Sys.info()["nodename"], "_",
