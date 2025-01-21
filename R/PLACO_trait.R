@@ -100,16 +100,6 @@ PLACO_triat<-function(exp_gwas,out_gwas,p.threshold=5e-08,save_file="PLACO"){
   out1<-data.frame(out1)
   colnames(out1)<-c("T.placo","p.placo")
   out1$SNP<-rownames(Z.matrix)
-  out1$POS<-combin_dat$pos.exposure
-  out1$CHR<-combin_dat$chr.exposure
-  out1$A2<-combin_dat$other_allele.exposure
-  out1$A1<-combin_dat$effect_allele.exposure
-  out1$P_exp<-combin_dat$pval.exposure
-  out1$beta_exp<-combin_dat$beta.exposure
-  out1$se_exp<-combin_dat$se.exposure
-  out1$P_out<-combin_dat$pval.outcome
-  out1$beta_out<-combin_dat$beta.outcome
-  out1$se_out<-combin_dat$se.outcome
   out1$FDR_placo<-p.adjust(out1$p.placo)
   write.table(out1,paste0(getwd(),"/",save_file,"PLACO.txt"),row.names = F)
   }
