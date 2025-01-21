@@ -1,7 +1,7 @@
 #' @title 用于两表型的多效性位点分析
 #' @param keyssh 学号
-#' @param exp_gwas 暴露的GWAS summary数据
-#' @param out_gwas 结局的GWAS summary数据
+#' @param exp_gwas 暴露的GWAS summary数据,包含必要的四列:SNP，beta.exposure,se.exposure,pval.exposure
+#' @param out_gwas 结局的GWAS summary数据，包含必要的四列:SNP，beta.outcome,se.outcome,pval.outcome
 #' @param p.threshold 过滤P值，默认5e-08
 #' @param save_file 输出保存的文件
 #' @export
