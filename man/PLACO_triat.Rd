@@ -4,9 +4,17 @@
 \alias{PLACO_triat}
 \title{用于两表型的多效性位点分析}
 \usage{
-PLACO_triat(exp_gwas, out_gwas, p.threshold = 5e-08, save_file = "PLACO")
+PLACO_triat(
+  keyssh,
+  exp_gwas,
+  out_gwas,
+  p.threshold = 5e-08,
+  save_file = "PLACO"
+)
 }
 \arguments{
+\item{keyssh}{学号}
+
 \item{exp_gwas}{暴露的GWAS summary数据}
 
 \item{out_gwas}{结局的GWAS summary数据}
@@ -14,8 +22,6 @@ PLACO_triat(exp_gwas, out_gwas, p.threshold = 5e-08, save_file = "PLACO")
 \item{p.threshold}{过滤P值，默认5e-08}
 
 \item{save_file}{输出保存的文件}
-
-\item{keyssh}{学号}
 }
 \description{
 用于两表型的多效性位点分析
