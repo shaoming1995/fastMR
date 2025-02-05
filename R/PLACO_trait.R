@@ -73,7 +73,7 @@ PLACO_triat<-function(keyssh,exp_gwas,out_gwas,p.threshold=5e-08,save_file="PLAC
     pvalue.b=.p.bessel(z=Z, varz=VarZ, AbsTol=AbsTol)
     return(list(T.placo=prod(Z), p.placo=pvalue.b))
   }
-message("完成配置，正在进行PLACO分析，耗时较长....）
+message("完成配置，正在进行PLACO分析，耗时较长...."）
   combin_dat<-merge(exp_gwas,out_gwas,by="SNP",all=F)
   combin_dat$Zexp<-combin_dat$beta.exposure/combin_dat$se.exposure
   combin_dat$Zout<-combin_dat$beta.outcome/combin_dat$se.outcome
