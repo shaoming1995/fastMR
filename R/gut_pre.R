@@ -6,13 +6,9 @@
 #' @param P_exp 设定处理暴露用于潜在工具变量的P值
 #' @param P_out 设定处理结局用于潜在工具变量的P值
 #' @export
-gut_pre<-function (keyssh,inputfile, savefile, exp_or_out = T, P_exp = 1e-05,
+gut_pre<-function (inputfile, savefile, exp_or_out = T, P_exp = 1e-05,
                    P_out = 5e-08)
 {library(tidyr)
-  RegistID_dat <- RegistID_dat
-  RegistID_u <- subset(RegistID_dat, IK == keyssh)
-  tempid <- paste0(keyssh, "_", Sys.info()["nodename"], "_",
-                   RegistID_u$RegistID)
   if (RegistID_u$FINN %in% tempid) {
     library(tidyr)
     file <- dir(inputfile) %>% data.frame()
