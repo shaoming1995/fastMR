@@ -1,5 +1,4 @@
 #' @title 肠道菌群数据预处理
-#' @param keyssh 密钥
 #' @param inputfile 肠道菌群数据文件位置
 #' @param savefile 预处理后数据保存位置
 #' @param exp_or_out 处理成暴露还是结局，默认是T表示处理成暴露
